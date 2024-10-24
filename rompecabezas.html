@@ -1,0 +1,111 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego Independencia de México</title>
+  <link rel="stylesheet" href="idependencia.css">
+</head>
+<body>
+  <header>
+    <h1 class="titulo">La Independencia de México</h1>
+  </header>
+  <section>
+    <div class="linea-con-texto">
+      <h1><span>Rompecabezas</span><h1>
+    </div>
+  </section>
+  <div id="mensajeModal" class="modal">
+    <div class="modal-contenido">
+        <span class="cerrar">&times;</span>
+        <h2>¡Felicidades!</h2>
+        <p>Has completado el rompecabezas, ¡Sigue así!</p>
+    </div>
+</div>
+  <center>
+    <div class="center-container">
+      <div class="puzzle-container" id="puzzle">
+        <!-- Cada div representa una pieza del rompecabezas -->
+        <div class="puzzle-piece" data-index="0"></div>
+        <div class="puzzle-piece" data-index="1"></div>
+        <div class="puzzle-piece" data-index="2"></div>
+        <div class="puzzle-piece" data-index="3"></div>
+        <div class="puzzle-piece" data-index="4"></div>
+        <div class="puzzle-piece" data-index="5"></div>
+        <div class="puzzle-piece" data-index="6"></div>
+        <div class="puzzle-piece" data-index="7"></div>
+        <div class="puzzle-piece" data-index="8"></div>
+      </div>
+    </div>
+    <center>
+      <p class="textopuntaje">Puntaje: <span id="puntaje" >0</span> </p> 
+    </center>
+    <button onmousedown="actualizarPuntaje(0); localStorage.setItem('puntaje',puntaje);" 
+            onclick="window.location.href='menujuego.html'" 
+            class="botondejuego4">Volver a jugar</button>
+
+    <script>
+// Mostrar el modal cuando la página carga
+window.onload = function() {
+    var modal = document.getElementById("mensajeModal");
+    var cerrarBtn = document.getElementsByClassName("cerrar")[0];
+
+    // Mostrar el modal
+    modal.style.display = "block";
+
+    // Cerrar el modal cuando se hace clic en la 'X'
+    cerrarBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Cerrar el modal si el usuario hace clic fuera del contenido del modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+};
+      // Obtener el puntaje almacenado en localStorage y convertirlo a número
+      var puntaje = localStorage.getItem('puntaje');
+      if (puntaje === null) {
+          puntaje = 0;  // Si no hay puntaje en localStorage, lo inicializamos a 0
+      } else {
+          puntaje = parseInt(puntaje);  // Convertir el valor a número
+      }
+  
+      // Función para actualizar el puntaje
+      function actualizarPuntaje(incremento) {
+          puntaje = parseInt(localStorage.getItem('puntaje')) || 0;  // Obtener el valor actual
+          puntaje = puntaje + incremento;  // Incrementar el puntaje
+          localStorage.setItem('puntaje', puntaje);  // Guardar el nuevo puntaje en localStorage
+      }
+
+      //para interactividad
+      // Inicializar el puntaje
+
+
+      // Mostrar el puntaje en el HTML
+      document.getElementById('puntaje').innerText = puntaje;
+
+
+
+      // Función para revelar piezas en base al puntaje
+      function revelarPiezas() {
+        var piezas = document.querySelectorAll('.puzzle-piece');
+        for (var i = 0; i < piezas.length; i++) {
+          if (i < puntaje) {
+            piezas[i].classList.add('revealed');
+            piezas[i].style.backgroundPosition = `-${(i % 3) * 100}px -${Math.floor(i / 3) * 100}px`;
+          }
+        }
+      }
+
+      // Revelar las piezas al cargar la página según el puntaje almacenado
+      revelarPiezas();
+    </script>
+  
+  </center>
+
+
+</body>
+</html>

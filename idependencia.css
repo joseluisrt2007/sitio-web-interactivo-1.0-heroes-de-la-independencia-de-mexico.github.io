@@ -1,0 +1,499 @@
+/*/*Para el body*/
+body {
+    margin: 0; /* Para quitar los márgenes */
+    background-color: lightgray;
+}
+
+/* Header */
+header {
+    overflow: hidden; /* Evitar problemas de desplazamiento */
+    background-color: #218838; /* Color de fondo negro */
+    padding: 20px;
+    margin: 0%;
+}
+
+/* Para el título */
+.titulo {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #ffffff; /* Color blanco */
+    font-size: 2em;
+}
+
+/* Para la línea con texto */
+
+.linea-con-texto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -5; /* Sin márgenes */
+}
+
+.linea-con-texto:before, .linea-con-texto:after {
+    content: '';
+    flex-grow: 1;
+    background: #000000; /* Color de la línea negra */
+    height: 1px;
+}
+
+.linea-con-texto span {
+    padding: 0 10px;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 2em;
+    color: #000000; /* Color negro */
+}
+
+.fechaMH {
+    text-align: center;
+    font-weight: normal;
+    font-family: sans-serif;
+    font-size: 1em;
+    color: #555555; /* Color gris */
+    margin-top: -12px; /* Ajustar margen superior para acercar aún más */
+    margin-bottom: -10; /* Sin margen inferior */
+}
+
+
+
+
+
+
+/*Css para las paginas de informacion*/
+.centextM{
+    text-align: justify;
+    font-size: 1.5em;
+    font-family: cursive;
+}
+.tablaMH{
+    text-align: center;
+    margin: 0 auto;
+    width: 90%;
+    padding: -12px;
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+    table-layout: fixed; /* Fija el ancho de las celdas */
+    
+}
+td {
+            width: 33%; /* Hace que todas las celdas tengan el mismo ancho */
+            text-align: center; /* Centra el contenido horizontalmente */
+            vertical-align: middle; /* Centra el contenido verticalmente */
+            padding: 20px; /* Espacio alrededor del contenido */
+        }
+.fechaMH{
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.6em;
+    font-family: sans-serif;
+    margin-top: 10px;
+}
+.imgtext{
+    width: 350px;
+    height: 350px;
+    display: block; /* Hace que la imagen se comporte como un bloque */
+    margin: auto; /* Centra la imagen horizontalmente */
+}
+
+
+
+
+/* Imágenes */
+.img {
+    width: 250px;
+    height: 250px;
+    border: 500px;
+    border-radius: 10px;
+    margin-bottom: 80px; /* Esto añade separación entre las imágenes de las filas */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto suave */
+}
+
+.img:hover {
+    transform: scale(1.5); /* Aumenta el tamaño de la imagen un 10% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Agrega una sombra */
+}
+
+
+
+
+
+/* Centrar tabla de botones */
+.tablaparabotones{
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;   
+}
+.centrar-tabla {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+/* Botones */
+
+.btn-jugar {
+
+    display: inline-block;
+    background-color: #fd7e14;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 4.2em;
+    margin-bottom: 80px; /* Esto añade separación entre las imágenes de las filas */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto suave */
+} 
+
+.btn-jugar:hover {
+    background-color: #e8590c;
+    transform: scale(1.5); /* Aumenta el tamaño de la imagen un 10% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Agrega una sombra */
+}
+
+.img, .btn-jugar {
+    cursor: pointer; /* Cambia el cursor a "puntero" al pasar sobre imágenes y botones */
+}
+.btn-jugar1 {
+    font-family: Comic Sans Ms ;
+    color: black;
+
+        width: 100px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+        height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+        display: inline-block;
+        background-color: #28a745;
+        padding: 15px 25px;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: 1.6em; /* Ajusté el tamaño de fuente para que encaje mejor */
+        text-align: center; /* Centra el texto dentro del botón */
+        margin-bottom: 80px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+
+
+.btn-jugar1:hover {
+    transform: scale(1.5); /* Aumenta el tamaño de la imagen un 10% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Agrega una sombra */
+}
+
+.img, .btn-jugar1 {
+    cursor: pointer; /* Cambia el cursor a "puntero" al pasar sobre imágenes y botones */
+}
+
+.img, .btn-regresar {
+    cursor: pointer; /* Cambia el cursor a "puntero" al pasar sobre imágenes y botones */
+}
+
+
+
+
+/*Para la pagina de juegos*/
+.txt{
+    font-size: 4em;
+    text-align: center;
+}
+.tambtn{
+    height: 100px;
+    width: 200px;
+}
+.im {
+    width: 400px;
+    height: 400px;
+    border: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Esto añade separación entre las imágenes de las filas */
+}
+.txtpregunta{
+    font-size: 3.5em;
+    font-family: cursive;
+
+}
+/* Contenedor que coloca la imagen y los botones en fila */
+/* Centrar todo el contenedor imagen y botones */
+.contenedor-imagen-botones {
+    display: flex;
+    text-align: center;
+    width: 80%;
+    gap: 20px; /* Espacio entre la imagen y los botones */
+}
+  /* Ajusta el tamaño de la imagen si es necesario */
+.imgjuego {
+    width: 400px; /* Puedes ajustar el tamaño según sea necesario */
+    height: 400px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+
+}
+.imgjuego:hover{
+    transform: scale(1.09); /* Aumenta el tamaño de la imagen un 10% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Agrega una sombra */
+}
+  
+  /* Ajustes de los botones */
+.container {
+    display: flex;
+    flex-direction: column; /* Coloca los botones uno debajo del otro */
+    gap: 10px; /* Espacio entre los botones */
+}
+
+
+.botones-en-linea {
+    display: flex;
+    gap: 20px; /* Ajusta el espacio entre los botones */
+}
+
+
+.textopuntaje{
+    text-align: center;
+    font-size: 1.5em;
+    font-family: cursive;
+}
+
+/* El fondo del modal, oculto por defecto */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro transparente */
+}
+
+/* El contenido del modal */
+.modal-contenido {
+    background-color: white;
+    margin: 15% auto; /* Centrado vertical y horizontalmente */
+    padding: 20px;
+    border: 2px solid #28a745;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: aparecer 0.5s ease; /* Animación */
+}
+
+/* Botón de cerrar (X) */
+.cerrar {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.cerrar:hover,
+.cerrar:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animación de entrada */
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+
+
+
+
+/*ROMPECABEZAS*/
+  /* Estilos básicos para el rompecabezas */
+  .puzzle-container {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+  }
+
+  .puzzle-piece {
+    width: 100px;
+    height: 100px;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+  }
+
+  .puzzle-piece.revealed {
+    background-size: 300px 300px;
+    background-image: url('Imagenes/Rompecabezas.jpg');
+  }
+
+  /* Centrar el rompecabezas en la página */
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+
+
+
+
+/*Memorama*/
+
+
+
+.memorama {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columnas */
+    gap: 20px; 
+    padding: 20px;
+    max-width: 1000px;
+}
+
+.card {
+    perspective: 1000px;
+}
+
+.card .inner {
+    position: relative;
+    width: 200px;/*El tamaño de las cartas */
+    height: 200px;/*El tamaño de las cartas */
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.card .front, .card .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    border: 2px solid #cccccc;
+    box-shadow: 0 20px 20px rgba(0,0,0,0.1);
+}
+
+.card .front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.card .back {
+    transform: rotateY(180deg);
+}
+
+.card.flipped .inner {
+    transform: rotateY(180deg);
+}
+
+.imgmemo{
+    width: 200px;
+    height: 200px;
+}
+
+.botondejuego{
+    width: 150px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+    height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: Comic Sans Ms ;
+    font-size: 25px;
+    padding: 1em 1em;
+    background-color: #d1e70a; 
+    color: black;
+    width: 180px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.botondejuego:hover{
+    transform: scale(1.2); /* Escala el botón un 10% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Añade una sombra */
+}
+.botondejuego2{
+    
+    width: 100px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+    height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: Comic Sans Ms ;
+    font-size: 25px;
+    padding: 1em 1em;
+    background-color: #049ef7; 
+    color: black;
+    width: 180px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.botondejuego2:hover{
+    transform: scale(1.2); /* Escala el botón un 10% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Añade una sombra */
+}
+
+.botondejuego3{
+    
+    width: 100px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+    height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: Comic Sans Ms ;
+    font-size: 25px;
+    padding: 1em 1em;
+    background-color: #d62525; 
+    color: black;
+    width: 180px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.botondejuego3:hover{
+    transform: scale(1.2); /* Escala el botón un 10% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Añade una sombra */
+}
+
+.botondejuego4 {
+    width: 220px; /* Ajusta el ancho para que el texto no se salga */
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: Comic Sans Ms;
+    font-size: 22px; /* Reducir ligeramente el tamaño del texto */
+    padding: 0.8em; /* Reducir el padding para hacer más espacio */
+    background-color: #28a745; 
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    white-space: nowrap; /* Asegura que el texto no haga salto de línea */
+}
+
+
+.botondejuego4:hover{
+    transform: scale(1.2); /* Escala el botón un 10% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Añade una sombra */
+}
+
+.inte{
+    text-align: center;
+    font-size: 1.8em;
+    font-family: cursive;
+}
+
+
+

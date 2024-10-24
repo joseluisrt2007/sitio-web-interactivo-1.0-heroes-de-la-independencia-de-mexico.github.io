@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego Independencia de México</title>
+  <link rel="stylesheet" href="idependencia.css">
+</head>
+<body>
+  <header>
+    <h1 class="titulo">La Independencia de México</h1>
+  </header>
+  <section>
+    <div class="linea-con-texto">
+      <h1><span>Juegos</span><h1>
+    </div>
+  </section>
+  <center>
+  <div class="contenedor-imagen-botones">
+    <img src="imagenes/mariano abasolo.jpg" alt="José María Morelos y Pavón" class="imgjuego">
+    <div class="container">
+      <p class="txtpregunta"><b>¿En que año se unió al movimiento insurgente?</b></p>
+
+      <!-- Contenedor para centrar las dos etiquetas a la misma altura -->
+      <div class="botones-en-linea">
+        <script src="Java.js"></script>
+        <button onmousedown="actualizarPuntaje(1); localStorage.setItem('puntaje',puntaje);" 
+                onclick="window.location.href='juego_leona vicario.html'" 
+                class="botondejuego">1810</button>
+
+        <button onmousedown="actualizarPuntaje(0); localStorage.setItem('puntaje',puntaje);" 
+                onclick="window.location.href='mariano abasolo.html'
+                mostrarMensaje()" 
+                class="botondejuego">1820</button>
+
+        <button onmousedown="actualizarPuntaje(0); localStorage.setItem('puntaje',puntaje);" 
+                onclick="window.location.href='mariano abasolo.html'
+                mostrarMensaje()" 
+                class="botondejuego">1811</button>
+        <script>
+          // Obtener el puntaje almacenado en localStorage y convertirlo a número
+          var puntaje = localStorage.getItem('puntaje');
+          if (puntaje === null) {
+              puntaje = 0;  // Si no hay puntaje en localStorage, lo inicializamos a 0
+          } else {
+              puntaje = parseInt(puntaje);  // Convertir el valor a número
+          }
+      
+          // Función para actualizar el puntaje
+          function actualizarPuntaje(incremento) {
+              puntaje = parseInt(localStorage.getItem('puntaje')) || 0;  // Obtener el valor actual
+              puntaje = puntaje + incremento;  // Incrementar el puntaje
+              localStorage.setItem('puntaje', puntaje);  // Guardar el nuevo puntaje en localStorage
+          }
+          </script>  
+      </div>
+    </div>
+  </div>
+</center>
+</body>
+</html>
