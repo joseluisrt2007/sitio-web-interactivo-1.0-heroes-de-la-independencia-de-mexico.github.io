@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
   <title>Juego Independencia de México</title>
   <link rel="stylesheet" href="idependencia.css">
 </head>
@@ -38,7 +38,7 @@
       </div>
     </div>
     <center>
-      <p class="textopuntaje">Puntaje: <span id="puntaje" >0</span> </p> 
+      <p class="textopuntaje ">Intentos: <span id="puntaje">0</span></p>
     </center>
     <button onmousedown="actualizarPuntaje(0); localStorage.setItem('puntaje',puntaje);" 
             onclick="window.location.href='menujuego.html'" 
@@ -77,6 +77,9 @@ window.onload = function() {
       function actualizarPuntaje(incremento) {
           puntaje = parseInt(localStorage.getItem('puntaje')) || 0;  // Obtener el valor actual
           puntaje = puntaje + incremento;  // Incrementar el puntaje
+          if(puntaje > 9){
+            puntaje = 9;
+          }
           localStorage.setItem('puntaje', puntaje);  // Guardar el nuevo puntaje en localStorage
       }
 
@@ -96,14 +99,28 @@ window.onload = function() {
           if (i < puntaje) {
             piezas[i].classList.add('revealed');
             piezas[i].style.backgroundPosition = `-${(i % 3) * 100}px -${Math.floor(i / 3) * 100}px`;
+            if(puntaje >= 9){
+            puntaje = 9;
+          }
+          }
+          if(puntaje >= 9){
+            puntaje = 9;
           }
         }
+        if(puntaje >= 9){
+            puntaje = 9;
+          }
       }
 
       // Revelar las piezas al cargar la página según el puntaje almacenado
       revelarPiezas();
+
+          
+
+      
     </script>
-  
+    <br><br><br>
+
   </center>
 
 
