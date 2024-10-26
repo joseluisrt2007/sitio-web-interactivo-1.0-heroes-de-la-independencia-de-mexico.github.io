@@ -123,5 +123,3 @@ resetButton.addEventListener('click', (e) => {
     resetGame();
 });
 
-
-
