@@ -321,7 +321,7 @@ td {
 
   .puzzle-piece.revealed {
     background-size: 300px 300px;
-    background-image: url('Imagenes/Rompecabezas.jpg');
+    background-image: url('Imagenes/rompecabezas.jpg');
   }
 
   /* Centrar el rompecabezas en la página */
@@ -390,6 +390,30 @@ td {
 .imgmemo{
     width: 200px;
     height: 200px;
+}
+
+.botondejuegome{
+    width: 150px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+    height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: Comic Sans Ms ;
+    font-size: 25px;
+    padding: 1em 1em;
+    background-color: #3273be; 
+    color: black;
+    width: 180px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.botondejuegome:hover{
+    transform: scale(1.2); /* Escala el botón un 10% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Añade una sombra */
 }
 
 .botondejuego{
@@ -495,5 +519,7 @@ td {
     font-family: cursive;
 }
 
-
-
+/*LINEA INSANA POR SI YA NO QUIERES QUE APARESCA EL BUG*/
+.hidden {
+    display: none;
+}

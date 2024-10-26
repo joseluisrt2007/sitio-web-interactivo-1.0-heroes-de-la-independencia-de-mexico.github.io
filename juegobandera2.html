@@ -1,9 +1,8 @@
 <!DOCTYPE html> 
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
   <title>Juego Independencia de México</title>
   <link rel="stylesheet" href="idependencia.css">
 </head>
@@ -26,13 +25,13 @@
       <div class="botones-en-linea">
         <script src="Java.js"></script>
         <button onmousedown="actualizarPuntaje(0); localStorage.setItem('puntaje',puntaje);" 
-                onclick="window.location.href='bandera.html'
-                mostrarMensaje()" 
+                onclick="mostrarMensajeFallo()"
+ 
                 class="botondejuego">Ganar en contra de Francia </button>
 
         <button onmousedown="actualizarPuntaje(0); localStorage.setItem('puntaje',puntaje);" 
-                onclick="window.location.href='bandera.html'
-                mostrarMensaje()" 
+                onclick="mostrarMensajeFallo()"
+
                 class="botondejuego">Vencer al ejército de los Estados Unidos</button>
                 
         <button onmousedown="actualizarPuntaje(1); localStorage.setItem('puntaje',puntaje);" 
@@ -55,11 +54,73 @@
           }
           </script> 
       </div>
+
+      <!-- Modal de fallo -->
+      <div id="mensajeFalloModal" class="modalj" style="display:none;">
+        <div class="modal-contenidoj">
+            <span class="cerrarj" onclick="cerrarModal()">&times;</span>
+            <h2 class="textofalla">¡Ups! Estuviste cerca</h2>
+            <p class="textofalla2">Sigue intentándolo</p>
+        </div>
+      </div>
+
+      <style>
+        /* Estilos para el modal */
+        .modalj {
+          display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal-contenidoj {
+          background-color: #f44336; /* Color de fondo rojo para destacar */
+            padding: 40px; /* Aumenta el espacio interior */
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            width: 300px; /* Cambia el ancho máximo */
+        }
+        .textofalla{
+          font-family: Georgia, 'Times New Roman', Times, serif;
+          font-size: 1.5em;
+        }
+        .textofalla2{
+          font-family: 'Times New Roman', Times, serif;
+          font-size: 1.4em;
+        }
+        .cerrarj {
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 24px;
+            font-weight: bold;
+            float: right;
+            cursor: pointer;
+        }
+
+      </style> 
+      <script>
+        function mostrarMensajeFallo() {
+        // Mostrar el modal
+        document.getElementById('mensajeFalloModal').style.display = 'flex';
+        // Después de 2 segundos, redirigir a la nueva página
+        }
+
+        function cerrarModal() {
+            document.getElementById('mensajeFalloModal').style.display = 'none';
+        
+                window.location.href = 'bandera.html';
+        }
+      </script>
     </div>
   </div>
+  <br><br><br>
 </center>
-        <br>
-        <br>
-        <br>
 </body>
 </html>
