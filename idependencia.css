@@ -525,6 +525,30 @@ td {
 }
 
 /*PARA CELULARES */
+.tabla-botones {
+    display: grid;
+    grid-template-columns: repeat(3, auto); /* Tres columnas en pantallas grandes */
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para los botones y centrado del texto */
+.tabla-botones div {
+    display: flex;
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+}
+
+.tabla-botones div a {
+   
+    text-align: center; /* Centra el texto dentro del enlace */
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+}
+
+/*PARA CELULARES */
 /*POSDATA YA NO QUIERO*/
 @media (max-width: 480px) {
     /*/*Para el body*/
@@ -660,6 +684,50 @@ td {
         vertical-align: middle;
 
     }
-    
+
+        /*Para el menu de juego*/
+    /* Especifica la posición de cada botón en la cuadrícula */
+    .tabla-botones {
+        grid-template-columns: repeat(2, auto); /* Dos columnas */
+        grid-template-rows: auto auto; /* Dos filas */
+    }
+
+    /* Estilos para cada botón dentro del media query */
+    .botondejuego, .botondejuego2, .botondejuego3 {
+        width: 80px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+        height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+        display: inline-block;
+        margin-left: 5px;
+        margin-right: 5px;
+        font-family: Comic Sans Ms ;
+        font-size: .9em;
+        padding: 10px 10px;
+        background-color: #d62525; 
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+
+    .botondejuego {
+        
+        background-color: #d1e70a;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .botondejuego2 {
+        background-color: #049ef7;
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .botondejuego3 {
+        background-color: #d62525;
+        grid-column: 1 / span 2; /* Ocupa ambas columnas de la segunda fila */
+        grid-row: 2;
+    }
         
 }
