@@ -25,19 +25,19 @@
         <div class="botones-en-linea">
           <script src="Java.js"></script>
           <button onmousedown="actualizarPuntaje(1); localStorage.setItem('puntaje',puntaje);" 
-                  class="botondejuego" 
+                  class="botondejuegomh" 
                   onclick="window.location.href='juegobandera1.html'">Si
           </button>
 
           <button 
             onmousedown="actualizarPuntaje(0); localStorage.setItem('puntaje', puntaje);"
             onclick="mostrarMensajeFallo()"
-            class="botondejuego">No
+            class="botondejuegomh">No
           </button>
           
           <button onmousedown="actualizarPuntaje(0); localStorage.setItem('puntaje', puntaje);"
             onclick="mostrarMensajeFallo()"
-            class="botondejuego">Tal vez
+            class="botondejuegomh">Tal vez
           </button>
         </div>
         <script>
