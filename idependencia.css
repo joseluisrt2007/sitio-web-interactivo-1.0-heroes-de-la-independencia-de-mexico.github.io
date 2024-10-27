@@ -524,3 +524,91 @@ td {
     display: none;
 }
 
+/*PARA CELULARES */
+/*POSDATA YA NO QUIERO*/
+@media (max-width: 480px) {
+    /*/*Para el body*/
+    body {
+        margin: 0; /* Para quitar los márgenes */
+        background-color: lightgray;
+    }
+
+    /* Header */
+    header {
+        overflow: hidden; /* Evitar problemas de desplazamiento */
+        background-color: #218838; /* Color de fondo negro */
+        margin: 0%;
+        width: 88%;
+    }
+
+    /* Para el título */
+    .titulo {
+        text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: #ffffff; /* Color blanco */
+        font-size: 1em;
+    }
+
+    /* Para la línea con texto */
+
+    .linea-con-texto {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: -5; /* Sin márgenes */
+    }
+
+    .linea-con-texto:before, .linea-con-texto:after {
+        content: '';
+        flex-grow: 0.5;
+        background: #000000; /* Color de la línea negra */
+        height: 0.5px;
+    }
+
+    .linea-con-texto span {
+        padding: 0 10px;
+        font-weight: bold;
+        font-family: sans-serif;
+        font-size: .8em;
+        text-align: center;
+        color: #000000; /* Color negro */
+    }
+
+    .fechaMH {
+        text-align: center;
+        font-weight: normal;
+        font-family: sans-serif;
+        font-size: 1em;
+        color: #555555; /* Color gris */
+        margin-top: -12px; /* Ajustar margen superior para acercar aún más */
+        margin-bottom: -10; /* Sin margen inferior */
+    }
+
+    .img {
+        width: 60px;
+        height: 60px;
+        border: 25px;
+        border-radius: 10px;
+        margin-bottom: 10px; /* Esto añade separación entre las imágenes de las filas */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto suave */
+    }
+    
+    br {
+        display: none;
+      }
+    
+
+    .btn-jugar {
+
+        display: inline-block;
+        background-color: #fd7e14;
+        color: white;
+        padding: 5px 15px;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: 1em;
+        margin-bottom: 20px; /* Esto añade separación entre las imágenes de las filas */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto suave */
+    } 
+
+}
