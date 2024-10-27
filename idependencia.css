@@ -636,7 +636,7 @@ td {
     .centextM{
         text-align: justify;
         font-size: .4em;
-        font-family: cursive;
+        font-family: Arial;
     }
     .tablaMH{
         text-align: center;
@@ -684,8 +684,10 @@ td {
         vertical-align: middle;
 
     }
-
-        /*Para el menu de juego*/
+    
+       
+    
+    /*Para el menu de juego*/
     /* Especifica la posición de cada botón en la cuadrícula */
     .tabla-botones {
         grid-template-columns: repeat(2, auto); /* Dos columnas */
@@ -729,71 +731,68 @@ td {
         grid-column: 1 / span 2; /* Ocupa ambas columnas de la segunda fila */
         grid-row: 2;
     }
-        
-}
-/* Estilo para pantallas de tabletas (ancho entre 600px y 1024px) */
-@media (max-width: 1024px) {
-    .titulo {
-        font-size: 1.8em;
+
+
+
+
+    /*Para la trivia*/
+    .imgjuego {
+        width: 60px; /* Puedes ajustar el tamaño según sea necesario */
+        height: 80px;
+        transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    
+    }
+    .txtpregunta{
+        font-size: .8em;
+        font-family: Arial;
+    }
+    .container {
+        display: flex;
+        flex-direction: column; /* Coloca los botones uno debajo del otro */
+        gap: 5px; /* Espacio entre los botones */
+    }
+    
+    
+    .botones-en-linea {
+        display: flex;
+        gap: 10px; /* Ajusta el espacio entre los botones */
+    }
+    
+    
+    .textopuntaje{
+        text-align: center;
+        font-size: .9em;
+        font-family: cursive;
     }
 
-    .tablaMH, .tablaparabotones {
-        width: 80%;
+    .botondejuegomh{
+        width: 50px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+        height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+        display: inline-block;
+        font-family: Comic Sans Ms ;
+        font-size: .5em;
+        background-color: #d1e70a; 
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 15px;
+        transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
     }
 
-    .img, .imgjuego {
-        width: 200px;
-        height: 200px;
-    }
-
-    .btn-jugar, .btn-jugar1 {
-        font-size: 2em;
-        padding: 10px 20px;
-    }
-}
-/* Estilo para pantallas de teléfonos móviles (ancho menor o igual a 600px) */
-@media (max-width: 600px) {
-    .titulo {
-        font-size: 1.5em;
-    }
-
-    .tablaMH, .tablaparabotones {
-        width: 100%;
-    }
-
-    .img, .imgjuego {
-        width: 150px;
-        height: 150px;
-    }
-
-    .btn-jugar, .btn-jugar1 {
-        font-size: 1.5em;
-        padding: 8px 16px;
-    }
-
-    .contenedor-imagen-botones {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-/* Ajuste de contenedores y márgenes en dispositivos móviles y tabletas */
-@media (max-width: 1024px) {
-    body {
-        padding: 10px;
-    }
-
-    .contenedor-imagen-botones, .container {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .puzzle-container {
-        grid-template-columns: repeat(2, 80px);
-        grid-template-rows: repeat(2, 80px);
-        gap: 5px;
-    }
-
-    .modal-contenido {
-        width: 90%;
+    .botondejuegob1{
+        width: 65px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+        height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+        display: inline-block;
+        font-family: Comic Sans Ms ;
+        font-size: .55em;
+        background-color: #d1e70a; 
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 15px;
+        transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
     }
 }
+
