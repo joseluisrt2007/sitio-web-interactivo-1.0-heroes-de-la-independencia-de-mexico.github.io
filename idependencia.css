@@ -524,36 +524,3 @@ td {
     display: none;
 }
 
-/*Para celulares etc*/
-/* Estilos para pantallas pequeñas (teléfonos) */
-@media (max-width: 600px) {
-    body {
-        margin: 0;
-        padding: 10px;
-    }
-
-    /* Ajusta otros elementos de tu diseño aquí */
-}
-
-/* Estilos para tabletas */
-@media (min-width: 601px) and (max-width: 1024px) {
-    body {
-        margin: 0 auto;
-        padding: 20px;
-        max-width: 95%;
-    }
-
-    /* Ajusta otros elementos de tu diseño aquí */
-}
-
-/* Estilos para pantallas grandes (escritorio) */
-@media (min-width: 1025px) {
-    body {
-        margin: 0 auto;
-        padding: 30px;
-        max-width: 80%;
-    }
-
-    /* Ajusta otros elementos de tu diseño aquí */
-}
-
