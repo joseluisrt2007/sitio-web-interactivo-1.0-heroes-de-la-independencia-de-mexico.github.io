@@ -538,7 +538,7 @@ td {
         overflow: hidden; /* Evitar problemas de desplazamiento */
         background-color: #218838; /* Color de fondo negro */
         margin: 0%;
-        width: 88%;
+        width: 90%;
     }
 
     /* Para el título */
@@ -569,7 +569,7 @@ td {
         padding: 0 10px;
         font-weight: bold;
         font-family: sans-serif;
-        font-size: .8em;
+        font-size: .6em;
         text-align: center;
         color: #000000; /* Color negro */
     }
@@ -580,8 +580,6 @@ td {
         font-family: sans-serif;
         font-size: 1em;
         color: #555555; /* Color gris */
-        margin-top: -12px; /* Ajustar margen superior para acercar aún más */
-        margin-bottom: -10; /* Sin margen inferior */
     }
 
     .img {
@@ -610,5 +608,58 @@ td {
         margin-bottom: 20px; /* Esto añade separación entre las imágenes de las filas */
         transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto suave */
     } 
+    /*Para las paginas de info*/
+    .centextM{
+        text-align: justify;
+        font-size: .4em;
+        font-family: cursive;
+    }
+    .tablaMH{
+        text-align: center;
+        margin: 0 auto;
+        width: 90%;
+        padding: -12px;
+        margin: 0 auto; /* Centra la tabla horizontalmente */
+        align-items: center;      /* Centra verticalmente */
+        table-layout: fixed; /* Fija el ancho de las celdas */
+        
+    }
+    td {
+                width: 33%; /* Hace que todas las celdas tengan el mismo ancho */
+                text-align: center; /* Centra el contenido horizontalmente */
+                vertical-align: middle; /* Centra el contenido verticalmente */
+                padding: 0px; /* Espacio alrededor del contenido */
+            }
+    .fechaMH{
+        flex-direction: column;
+        text-align: center;
+        font-size: .8em;
+        font-family: sans-serif;
+        margin-top: 10px;
+    }
+    .imgtext{
+        width: 60px;
+        height: 60px;
+        display: block; /* Hace que la imagen se comporte como un bloque */
+        margin: auto; /* Centra la imagen horizontalmente */
+    }
+    .btn-jugar1 {
+        font-family: Comic Sans Ms;
+        color: black;
+        width: 50px; /* Ancho fijo */
+        height: 15px;
+        display: inline-block;
+        background-color: #28a745;
+        padding: 5px 10px;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: .6em; /* Tamaño de fuente ajustado */
+        text-align: center;
+        margin-bottom: 80px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        vertical-align: middle;
 
+    }
+    
+        
 }
