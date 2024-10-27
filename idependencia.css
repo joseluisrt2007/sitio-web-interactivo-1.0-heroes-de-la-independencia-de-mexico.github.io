@@ -915,4 +915,91 @@ td {
         margin-bottom: 20px;
     }
 }
+/* Estilos generales para tabletas (ancho máximo de 1024px) */
+@media (max-width: 1024px) {
+    /* Ajuste de tamaño y alineación del título */
+    .titulo {
+        font-size: 1.8em;
+        text-align: center;
+    }
+
+    /* Ajuste de imágenes */
+    .img, .imgjuego {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 50px; /* Ajusta el margen inferior */
+    }
+
+    /* Ajuste de contenedores */
+    .contenedor-imagen-botones, .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; /* Espacio entre los elementos */
+        width: 100%;
+    }
+
+    /* Ajuste de tablas */
+    .tablaMH, .tablaparabotones, .centrar-tabla {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    td {
+        width: 100%;
+        padding: 15px;
+        text-align: center;
+    }
+
+    /* Ajuste de botones */
+    .btn-jugar, .btn-jugar1, .botondejuegome, .botondejuego, .botondejuego2, .botondejuego3, .botondejuego4 {
+        font-size: 2.2em;
+        padding: 10px 20px;
+        margin-bottom: 40px;
+        width: 90%;
+    }
+
+    /* Ajuste de memorama */
+    .memorama {
+        grid-template-columns: repeat(3, 1fr); /* Ajuste a 3 columnas */
+        gap: 10px;
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    /* Ajuste de cartas en memorama */
+    .card .inner {
+        width: 150px; /* Tamaño ajustado de cartas */
+        height: 150px;
+    }
+
+    /* Ajuste de la clase de texto */
+    .txt, .textopuntaje, .txtpregunta {
+        font-size: 2.5em;
+    }
+
+    /* Ajuste de modal */
+    .modal-contenido {
+        width: 90%;
+        max-width: 400px;
+        padding: 15px;
+    }
+
+    /* Ajuste de rompecabezas */
+    .puzzle-container {
+        grid-template-columns: repeat(3, 80px);
+        grid-template-rows: repeat(3, 80px);
+        gap: 8px;
+    }
+
+    .puzzle-piece {
+        width: 80px;
+        height: 80px;
+    }
+
+    /* Ajuste de contenedores para juegos */
+    .botones-en-linea {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
 
