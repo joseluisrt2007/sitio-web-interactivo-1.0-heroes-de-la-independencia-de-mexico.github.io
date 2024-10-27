@@ -1,18 +1,18 @@
 const cardsArray = [
-    { name: '1', img: 'Imagenes/miguel hidalgo.jpg' },
-    { name: '1', img: 'Imagenes/miguel hidalgo.jpg' },
-    { name: '2', img: 'Imagenes/jose mara morelos.jpg' },
-    { name: '2', img: 'Imagenes/jose mara morelos.jpg' },
-    { name: '3', img: 'Imagenes/ignacio aldama.jpg' },
-    { name: '3', img: 'Imagenes/ignacio aldama.jpg' },
-    { name: '4', img: 'Imagenes/josefa ortiz.jpg' },
-    { name: '4', img: 'Imagenes/josefa ortiz.jpg' },
-    { name: '5', img: 'Imagenes/juan aldama.jpg' },
-    { name: '5', img: 'Imagenes/juan aldama.jpg' },
-    { name: '6', img: 'Imagenes/leona viario.jpg' },
-    { name: '6', img: 'Imagenes/leona viario.jpg' },
-    { name: '7', img: 'Imagenes/mariano abasolo.jpg' },
-    { name: '7', img: 'Imagenes/mariano abasolo.jpg' }
+    { name: '1', img: 'imagenes/miguel hidalgo.jpg' },
+    { name: '1', img: 'imagenes/miguel hidalgo.jpg' },
+    { name: '2', img: 'imagenes/jose mara morelos.jpg' },
+    { name: '2', img: 'imagenes/jose mara morelos.jpg' },
+    { name: '3', img: 'imagenes/ignacio aldama.jpg' },
+    { name: '3', img: 'imagenes/ignacio aldama.jpg' },
+    { name: '4', img: 'imagenes/josefa ortiz.jpg' },
+    { name: '4', img: 'imagenes/josefa ortiz.jpg' },
+    { name: '5', img: 'imagenes/juan aldama.jpg' },
+    { name: '5', img: 'imagenes/juan aldama.jpg' },
+    { name: '6', img: 'imagenes/leona viario.jpg' },
+    { name: '6', img: 'imagenes/leona viario.jpg' },
+    { name: '7', img: 'imagenes/mariano abasolo.jpg' },
+    { name: '7', img: 'imagenes/mariano abasolo.jpg' }
 ];
 
 const memorama = document.querySelector('.memorama');
