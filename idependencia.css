@@ -594,7 +594,7 @@ td {
 }
 /*PARA CELULARES */
 /*POSDATA YA NO QUIERO*/
-@media (max-width: 320px) {
+@media (max-width: 600px) {
     /*/*Para el body*/
     body {
         margin: 0; /* Para quitar los márgenes */
