@@ -123,3 +123,43 @@ resetButton.addEventListener('click', (e) => {
     resetGame();
 });
 
+let matches = 0;
+const mensajeModal = document.getElementById('mensajeModal');
+const closeModalButton = document.querySelector('.cerrar');
+
+function showModal() {
+    mensajeModal.style.display = 'block';
+}
+
+function disableCards() {
+    firstCard.removeEventListener('click', flipCard);
+    secondCard.removeEventListener('click', flipCard);
+
+    matches++;
+    if (matches === cardsArray.length / 2) {
+        setTimeout(showModal, 500); // Muestra el mensaje de felicitación
+    }
+
+    resetBoard();
+}
+
+function resetGame() {
+    attempts = 0;
+    matches = 0;
+    attemptsCounter.textContent = attempts;
+    mensajeModal.style.display = 'none'; // Oculta el modal si estaba visible
+    createBoard();
+}
+
+// Añade un evento para cerrar el modal
+closeModalButton.addEventListener('click', () => {
+    mensajeModal.style.display = 'none';
+});
+
+// Oculta el modal si se hace clic fuera del contenido
+window.addEventListener('click', (event) => {
+    if (event.target === mensajeModal) {
+        mensajeModal.style.display = 'none';
+    }
+});
+
