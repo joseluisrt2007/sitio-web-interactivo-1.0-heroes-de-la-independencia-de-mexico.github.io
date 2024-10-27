@@ -731,3 +731,69 @@ td {
     }
         
 }
+/* Estilo para pantallas de tabletas (ancho entre 600px y 1024px) */
+@media (max-width: 1024px) {
+    .titulo {
+        font-size: 1.8em;
+    }
+
+    .tablaMH, .tablaparabotones {
+        width: 80%;
+    }
+
+    .img, .imgjuego {
+        width: 200px;
+        height: 200px;
+    }
+
+    .btn-jugar, .btn-jugar1 {
+        font-size: 2em;
+        padding: 10px 20px;
+    }
+}
+/* Estilo para pantallas de teléfonos móviles (ancho menor o igual a 600px) */
+@media (max-width: 600px) {
+    .titulo {
+        font-size: 1.5em;
+    }
+
+    .tablaMH, .tablaparabotones {
+        width: 100%;
+    }
+
+    .img, .imgjuego {
+        width: 150px;
+        height: 150px;
+    }
+
+    .btn-jugar, .btn-jugar1 {
+        font-size: 1.5em;
+        padding: 8px 16px;
+    }
+
+    .contenedor-imagen-botones {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+/* Ajuste de contenedores y márgenes en dispositivos móviles y tabletas */
+@media (max-width: 1024px) {
+    body {
+        padding: 10px;
+    }
+
+    .contenedor-imagen-botones, .container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .puzzle-container {
+        grid-template-columns: repeat(2, 80px);
+        grid-template-rows: repeat(2, 80px);
+        gap: 5px;
+    }
+
+    .modal-contenido {
+        width: 90%;
+    }
+}
