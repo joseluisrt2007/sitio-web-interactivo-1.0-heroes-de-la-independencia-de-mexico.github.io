@@ -917,90 +917,322 @@ td {
     
 }
 /* Estilos generales para tabletas (ancho máximo de 1024px) */
-@media (max-width: 1024px and min-width: 601px) {
-    /* Ajuste de tamaño y alineación del título */
+@media (min-width: 601px) and (max-width: 1024px) {
+    /* Para el body */
+    body {
+        margin: 0; /* Para quitar los márgenes */
+        background-color: lightgray;
+    }
+
+    /* Header */
+    header {
+        background-color: #218838; /* Color de fondo */
+        margin: 0;
+    }
+
+    /* Para el título */
     .titulo {
-        font-size: 1.8em;
         text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: #ffffff;
+        font-size: 1.5em;
     }
 
-    /* Ajuste de imágenes */
-    .img, .imgjuego {
-        width: 200px;
-        height: 200px;
-        margin-bottom: 50px; /* Ajusta el margen inferior */
-    }
-
-    /* Ajuste de contenedores */
-    .contenedor-imagen-botones, .container {
-        flex-direction: column;
+    /* Linea con texto */
+    .linea-con-texto {
+        width: 100%; /* Ajusta al 100% del contenedor */
+        max-width: 640px; /* O un máximo si es necesario */
+        display: flex;
         align-items: center;
-        gap: 15px; /* Espacio entre los elementos */
-        width: 100%;
+        justify-content: center;
+        margin: 0 auto; /* Centrado en pantalla */
     }
 
-    /* Ajuste de tablas */
-    .tablaMH, .tablaparabotones, .centrar-tabla {
-        width: 90%;
-        margin: 0 auto;
+    .linea-con-texto:before, .linea-con-texto:after {
+        content: '';
+        flex-grow: 1;
+        background: #000000;
+        height: 0.7px;
     }
 
-    td {
-        width: 100%;
-        padding: 15px;
-        text-align: center;
-    }
+.linea-con-texto span {
+    padding: 10px;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 1em;
+    text-align: center;
+    color: #000000;
+}
 
-    /* Ajuste de botones */
-    .btn-jugar, .btn-jugar1, .botondejuegome, .botondejuego, .botondejuego2, .botondejuego3, .botondejuego4 {
-        font-size: 2.2em;
-        padding: 10px 20px;
-        margin-bottom: 40px;
-        width: 90%;
-    }
+.fechaMH {
+    text-align: center;
+    font-weight: normal;
+    font-family: sans-serif;
+    font-size: 2em;
+    color: #555555; /* Color gris */
+}
 
-    /* Ajuste de memorama */
-    .memorama {
-        grid-template-columns: repeat(3, 1fr); /* Ajuste a 3 columnas */
-        gap: 10px;
-        padding: 10px;
-        max-width: 100%;
-    }
+.img {
+    width: 180px;
+    height: 180px;
+    border: 10px;
+    border-radius: 30px;
+    margin-bottom: 30px; /* Esto añade separación entre las imágenes de las filas */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto suave */
+}
 
-    /* Ajuste de cartas en memorama */
-    .card .inner {
-        width: 150px; /* Tamaño ajustado de cartas */
-        height: 150px;
-    }
 
-    /* Ajuste de la clase de texto */
-    .txt, .textopuntaje, .txtpregunta {
-        font-size: 2.5em;
-    }
 
-    /* Ajuste de modal */
-    .modal-contenido {
-        width: 90%;
-        max-width: 400px;
-        padding: 15px;
-    }
 
-    /* Ajuste de rompecabezas */
-    .puzzle-container {
-        grid-template-columns: repeat(3, 80px);
-        grid-template-rows: repeat(3, 80px);
-        gap: 8px;
-    }
+.btn-jugar {
 
-    .puzzle-piece {
-        width: 80px;
-        height: 80px;
-    }
+    display: inline-block;
+    background-color: #fd7e14;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 3em;
+    margin-bottom: 20px; /* Esto añade separación entre las imágenes de las filas */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto suave */
+} 
+/*Para las paginas de info*/
+.centextM{
+    text-align: justify;
+    font-size: 1em;
+    font-family: Arial;
+}
+.tablaMH {
+    padding: 50px;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%; /* Ajusta al 100% del contenedor */
+    max-width: 600px; /* Limita el ancho máximo */
+    align-items: center;
+    table-layout: fixed;
+ 
+}
+td {
+            width: 33%; /* Hace que todas las celdas tengan el mismo ancho */
+            text-align: center; /* Centra el contenido horizontalmente */
+            vertical-align: middle; /* Centra el contenido verticalmente */
+            padding: 5px; /* Espacio alrededor del contenido */
+        }
+.fechaMH{
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.3em;
+    font-family: sans-serif;
+    margin-top: 10px;
+}
+.imgtext{
+    width: 140px;
+    height: 180px;
+    display: block; /* Hace que la imagen se comporte como un bloque */
+    margin: auto; /* Centra la imagen horizontalmente */
+}
+.btn-jugar1 {
+    font-family: Comic Sans Ms;
+    color: black;
+    width: 150px; /* Ancho fijo */
+    height: 50px;
+    display: inline-block;
+    background-color: #28a745;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 2em; /* Tamaño de fuente ajustado */
+    text-align: center;
+    margin-bottom: 80px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    vertical-align: middle;
 
-    /* Ajuste de contenedores para juegos */
-    .botones-en-linea {
-        flex-direction: column;
-        gap: 15px;
-    }
+}
+
+   
+
+/*Para el menu de juego*/
+/* Especifica la posición de cada botón en la cuadrícula */
+.tabla-botones {
+    grid-template-columns: repeat(2, auto); /* Dos columnas */
+    grid-template-rows: auto auto; /* Dos filas */
+}
+
+/* Estilos para cada botón dentro del media query */
+.botondejuego, .botondejuego2, .botondejuego3 {
+    width: 200px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+    height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: Comic Sans Ms ;
+    font-size: 2.5em;
+    padding: 10px 10px;
+    background-color: #d62525; 
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.botondejuego {
+    
+    background-color: #d1e70a;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.botondejuego2 {
+    background-color: #049ef7;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.botondejuego3 {
+    background-color: #d62525;
+    grid-column: 1 / span 2; /* Ocupa ambas columnas de la segunda fila */
+    grid-row: 2;
+}
+
+
+
+
+/*Para la trivia*/
+.imgjuego {
+    width: 180px; /* Puedes ajustar el tamaño según sea necesario */
+    height: 180px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+
+}
+.txtpregunta{
+    font-size: 1.5em;
+    font-family: Arial;
+}
+.container {
+    width: 90%;
+    display: flex;
+    flex-direction: column; /* Coloca los botones uno debajo del otro */
+    gap: 20px; /* Espacio entre los botones */
+}
+
+
+.botones-en-linea {
+    display: flex;
+    gap: 50px; /* Ajusta el espacio entre los botones */
+}
+
+
+.textopuntaje{
+    text-align: center;
+    font-size: 2em;
+    font-family: cursive;
+}
+
+.botondejuegomh{
+    width: 70px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+    height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+    display: inline-block;
+    font-family: Comic Sans Ms ;
+    font-size: 1em;
+    background-color: #d1e70a; 
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    margin: 0; /* Elimina márgenes si los hay */
+    padding: 0.5em 0; /* Ajusta el padding según sea necesario */
+}
+
+.botondejuegob1{
+    width: 75px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+    height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+    display: inline-block;
+    font-family: Comic Sans Ms ;
+    font-size: .8em;
+    background-color: #d1e70a; 
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    margin: 0; /* Elimina márgenes si los hay */
+    padding: 0.5em 0; /* Ajusta el padding según sea necesario */
+}
+
+.memorama {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 5 columnas */
+    gap: 20px; 
+    padding: 5px;
+    max-width: 100%;
+}
+
+.card {
+    perspective: 1000px;
+}
+
+.card .inner {
+    position: relative;
+    width: 150px;/*El tamaño de las cartas */
+    height: 150px;/*El tamaño de las cartas */
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.card .front, .card .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    box-shadow: 0 20px 20px rgba(0,0,0,0.1);
+}
+
+.card .front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.card .back {
+    transform: rotateY(180deg);
+}
+
+.card.flipped .inner {
+    transform: rotateY(180deg);
+}
+
+.imgmemo{
+    width: 150px;
+    height: 150px;
+}
+
+.botondejuegome{
+    width: 150px; /* Ancho fijo que asegura que ambos botones sean del mismo tamaño */
+    height: auto; /* Permite que la altura se ajuste de acuerdo con el padding */
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: Comic Sans Ms ;
+    font-size: 1.5em;
+    padding: 1em 1em;
+    background-color: #3273be; 
+    color: black;
+    width: 180px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    margin-bottom: 20px;
+}
 }
 
