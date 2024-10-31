@@ -844,11 +844,11 @@ td {
     }
 
     /*Para el memorama*/
-        .memorama {
+         .memorama {
         display: grid;
         grid-template-columns: repeat(3, 1fr); /* 5 columnas */
-        gap: 20px; 
-        padding: 20px;
+        gap: 10px; 
+        padding: 10px;
         max-width: 100%;
     }
     
@@ -858,8 +858,8 @@ td {
     
     .card .inner {
         position: relative;
-        width: 70px;/*El tamaño de las cartas */
-        height: 70px;/*El tamaño de las cartas */
+        width: 90px;/*El tamaño de las cartas */
+        height: 90px;/*El tamaño de las cartas */
         transform-style: preserve-3d;
         transition: transform 0.8s;
     }
@@ -870,7 +870,7 @@ td {
         height: 100%;
         backface-visibility: hidden;
         border-radius: 10px;
-        border: 2px solid #cccccc;
+        border: 1px solid #cccccc;
         box-shadow: 0 20px 20px rgba(0,0,0,0.1);
     }
     
@@ -891,8 +891,8 @@ td {
     }
     
     .imgmemo{
-        width: 70px;
-        height: 70px;
+        width: 90px;
+        height: 90px;
     }
     
     .botondejuegome{
@@ -914,6 +914,7 @@ td {
         transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
         margin-bottom: 20px;
     }
+    
 }
 /* Estilos generales para tabletas (ancho máximo de 1024px) */
 @media (max-width: 1024px and min-width: 601px) {
