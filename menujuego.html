@@ -18,21 +18,31 @@
   <br><br><br><br>  <br><br>
 
   <center>
-    <table>
+    <div class="tabla-botones">
+      <!-- Botón para Memorama -->
+      <div class="botondejuego"><a href="memorama.html">Memorama</a></div>
+  
+      <!-- Botón para Trivia que reinicia el puntaje -->
+      <div class="botondejuego2"><a href="juegos.html" onclick="reiniciarPuntaje();">Trivia</a></div>
+  
+      <!-- Botón para Regresar -->
+      <div class="botondejuego3"><a href="index.html">Regresar</a></div>
+    </div>
+  <!--  <table>
       <tr>
-          <!-- Botón para Memorama -->
+          <!-- Botón para Memorama --
           <td><a href="memorama.html" class="botondejuego">Memorama</a></td>
   
-          <!-- Botón para Trivia que reinicia el puntaje -->
+          <!-- Botón para Trivia que reinicia el puntaje --
           <td><a href="juegos.html" 
                  class="botondejuego2" 
                  onclick="reiniciarPuntaje();">Trivia</a></td>
   
-          <!-- Botón para Regresar -->
+          <!-- Botón para Regresar --
           <td><a href="index.html" class="botondejuego3">Regresar</a></td>
       </tr>
   </table>
-  
+  -->
   <script>
     // Obtener el puntaje almacenado en localStorage y convertirlo a número
     var puntaje = localStorage.getItem('puntaje');
