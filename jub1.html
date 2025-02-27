@@ -1,0 +1,140 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <title>Juego Miguel Hidalgo</title>
+  <link rel="stylesheet" href="independenciacelular.css">
+</head>
+<body>
+  <header>
+    <h1 class="titulo">La Independencia de México</h1>
+  </header>
+  <center>
+  <section>
+      <h1>Juego<h1>
+  </section>
+  <center>
+    <table class="centrar-tabla">
+        <tr>
+            <td>
+                <img class="imgjuego" src="imagenes/bandera.jpg" alt="Miguel Hidalgo y Costilla" >
+            </td>
+        </tr>
+        <tr>
+            <p class="txtpregunta"><b>2.-¿Cuándo inició la Independencia de México?</b></p>
+        </tr>
+        <!-- Contenedor para centrar las dos etiquetas a la misma altura -->
+        <tr>
+            <td>
+                <script src="Java.js"></script>
+                <br>
+                <button onmousedown="actualizarPuntaje(1); localStorage.setItem('puntaje',puntaje);" 
+                onclick="window.location.href='jub2.html'" 
+                class="botondejuegomh">16 de Septiembre de 1810</button>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <button onmousedown="actualizarPuntaje(0); localStorage.setItem('puntaje',puntaje);" 
+                onclick="mostrarMensajeFallo()"
+                class="botondejuegomh">16 de Septiembre de 1821</button>
+                <br>
+            </td>
+        </tr> 
+        <tr>
+            <td>
+                <br>
+                <button onmousedown="actualizarPuntaje(0); localStorage.setItem('puntaje',puntaje);" 
+                onclick="mostrarMensajeFallo()"
+                class="botondejuegomh">27 de Septiembre de 1821</button>
+                <br><br>
+            </td>
+        </tr> 
+    </table>
+
+        <script>
+          // Obtener el puntaje almacenado en localStorage y convertirlo a número
+          var puntaje = localStorage.getItem('puntaje');
+          if (puntaje === null) {
+              puntaje = 0;  // Si no hay puntaje en localStorage, lo inicializamos a 0
+          } else {
+              puntaje = parseInt(puntaje);  // Convertir el valor a número
+          }
+      
+          // Función para actualizar el puntaje
+          function actualizarPuntaje(incremento) {
+              puntaje = parseInt(localStorage.getItem('puntaje')) || 0;  // Obtener el valor actual
+              puntaje = puntaje + incremento;  // Incrementar el puntaje
+              localStorage.setItem('puntaje', puntaje);  // Guardar el nuevo puntaje en localStorage
+          }
+        </script> 
+        <!-- Modal de fallo -->
+        <div id="mensajeFalloModal" class="modalj" style="display:none;">
+          <div class="modal-contenidoj">
+              <span class="cerrarj" onclick="cerrarModal()">&times;</span>
+              <h2 class="textofalla">¡Ups! Estuviste cerca</h2>
+              <p class="textofalla2">Inténtalo de nuevo.</p>
+          </div>
+        </div>
+
+        <style>
+          /* Estilos para el modal */
+          .modalj {
+            display: flex;
+              justify-content: center;
+              align-items: center;
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-color: rgba(0, 0, 0, 0.5);
+              z-index: 1000;
+          }
+
+          .modal-contenidoj {
+            background-color: #f44336; /* Color de fondo rojo para destacar */
+              padding: 40px; /* Aumenta el espacio interior */
+              border-radius: 10px;
+              text-align: center;
+              color: white;
+              width: 300px; /* Cambia el ancho máximo */
+          }
+          .textofalla{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 1.5em;
+          }
+          .textofalla2{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.4em;
+          }
+          .cerrarj {
+              color: white;
+              font-family: 'Times New Roman', Times, serif;
+              font-size: 24px;
+              font-weight: bold;
+              float: right;
+              cursor: pointer;
+          }
+
+        </style> 
+        <script>
+          function mostrarMensajeFallo() {
+          // Mostrar el modal
+          document.getElementById('mensajeFalloModal').style.display = 'flex';
+          // Después de 2 segundos, redirigir a la nueva página
+          }
+
+          function cerrarModal() {
+              document.getElementById('mensajeFalloModal').style.display = 'none';
+          
+                  window.location.href = 'bac.html';
+          }
+        </script>  
+
+  </center>
+</body>
+</html>

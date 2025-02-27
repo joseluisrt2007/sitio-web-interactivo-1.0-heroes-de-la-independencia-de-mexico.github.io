@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+        <title>Independencia de México</title>
+        <link rel="stylesheet" href="independenciacelular.css">
+    </head>
+    <body>
+        <header>
+            <h1 class="titulo">La Independencia de México</h1>
+        </header>
+       
+        <section>
+            <h1 class="subti">Héroes de la Independencia<h1>
+        </section>
+  <br>
+
+  <center>
+    <div class="tabla-botones">
+      <!-- Botón para Memorama -->
+      <div class="botondejuego"><a href="memoramac.html">Memorama</a></div> <br><br><br>
+  
+      <!-- Botón para Trivia que reinicia el puntaje -->
+      <div class="botondejuego2"><a href="juegosc.html" onclick="reiniciarPuntaje();">Trivia</a></div> <br><br><br>
+  
+      <!-- Botón para Regresar -->
+      <div class="botondejuego3"><a href="menucelular.html">Inicio</a></div> <br><br><br>
+    </div>
+  <!--  <table>
+      <tr>
+          <!-- Botón para Memorama --
+          <td><a href="memorama.html" class="botondejuego">Memorama</a></td>
+  
+          <!-- Botón para Trivia que reinicia el puntaje --
+          <td><a href="juegos.html" 
+                 class="botondejuego2" 
+                 onclick="reiniciarPuntaje();">Trivia</a></td>
+  
+          <!-- Botón para Regresar --
+          <td><a href="index.html" class="botondejuego3">Regresar</a></td>
+      </tr>
+  </table>
+  -->
+  <script>
+    // Obtener el puntaje almacenado en localStorage y convertirlo a número
+    var puntaje = localStorage.getItem('puntaje');
+    if (puntaje === null) {
+        puntaje = 0;  // Si no hay puntaje en localStorage, lo inicializamos a 0
+    } else {
+        puntaje = parseInt(puntaje);  // Convertir el valor a número
+    }
+  
+    // Función para actualizar el puntaje
+    function actualizarPuntaje(incremento) {
+        puntaje = parseInt(localStorage.getItem('puntaje')) || 0;  // Obtener el valor actual
+        puntaje = puntaje + incremento;  // Modificar el puntaje según el incremento
+        localStorage.setItem('puntaje', puntaje);  // Guardar el nuevo puntaje en localStorage
+    }
+  
+    // Función para reiniciar el puntaje a 0
+    function reiniciarPuntaje() {
+        puntaje = 0;  // Reiniciar el puntaje a 0
+        localStorage.setItem('puntaje', puntaje);  // Guardar el puntaje reiniciado
+    }
+  </script>
+  
+  
+
+  </center>
+</body>
+</html>
