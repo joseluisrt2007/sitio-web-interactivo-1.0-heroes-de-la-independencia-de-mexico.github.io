@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorama</title>
+    <link rel="stylesheet" href="independenciacelular.css">
+</head>
+<body>
+    <header>
+        <h1 class="titulo">La Independencia de México</h1>
+    </header>
+   
+    <section>
+        <h1 class="subti">Héroes de la Independencia<h1>
+    </section>
+
+    <div id="mensajeModal" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar">&times;</span>
+            <h2>¡Felicidades!</h2>
+            <p>Has completado el memorama, ¡Sigue así!</p>
+        </div>
+    </div>
+                
+    <center>
+        <div class="memorama">
+            <!-- Las cartas se generarán dinámicamente -->
+        </div>
+        <p class="inte">Intentos: <span id="attemptsCounter">0</span></p>
+        <br>
+        <a class="botondejuegome" href="#" id="resetButton">Volver a Jugar</a>
+        <a class="botondejuegome" href="menujuegoc.html" >Menú juegos</a>
+        <br>
+        <script src="java.js"></script>
+    </center>
+    <br><br><br>
+</body>
+</html>
