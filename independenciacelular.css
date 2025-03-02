@@ -20,6 +20,14 @@ header {
     font-size: 2em;
 }
 
+.tituloi{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2em;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
 .subti{
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: #ffffff; /* Color blanco */;
