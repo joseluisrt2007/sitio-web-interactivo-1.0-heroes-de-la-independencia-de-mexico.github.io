@@ -5,16 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
     <title>Independencia de México</title>
     <link rel="stylesheet" href="idependencia.css">
+
 </head>
 <body>
-    <header>
+    <header >
         <h1 class="titulo">La Independencia de México</h1>
+    
+        <div id="menu-container">
+            <img src="imagenes/con_transparente.png" alt="Configuración" class="config-icon">
+            <ul class="nav">
+                <li><a href="menucelular.html" class="tm">Cambiar a celular</a></li>
+            </ul>
+        </div>
     </header>
+    
+
    
     <section>
         <div class="linea-con-texto">
             <h1><span>Héroes de la Independencia</span><h1>
         </div>
+     
     </section>
 
     <br>
@@ -39,5 +50,88 @@
         </tr>
     </table>
 </body>
-</html>
+<footer style="background-color: #a3d5ff; color: #333; text-align: center; padding: 15px 10px; font-family: 'Comic Sans MS', cursive, sans-serif;">
+    <h1 style="margin: 5px 0 8px; font-size: 28px; color: #2c2c2c;">¡Ayuda a la causa social!</h1>
+
+    <div style="padding: 10px; background-color: #a3d5ff;">
+        <!-- Contenedor de publicidades -->
+        <div id="publicidad-container" style="width: 100%; overflow: hidden; position: relative;">
+            <!-- Contenedor interno que tendrá el scroll -->
+            <div id="inner-container" style="display: flex; transition: transform 0.5s ease-in-out;">
+
+                <!-- Publicidad 1 -->
+                <div class="publicidad" style="flex: 0 0 100%; margin-bottom: 10px; display: flex; justify-content: center; align-items: center; gap: 40px;">
+                    <div style="text-align: left; max-width: 60%;">
+                        <h1 style="margin: 5px 0 8px; font-size: 20px; color: #2c2c2c;">
+                            Tapitas Calpulalpan <br><br> Contra la leucemia
+                        </h1>
+                    </div>
+                    <a href="publicidad1.html" target="_blank" style="display: flex; justify-content: center; align-items: center;">
+                        <div style="position: relative; width: 180px;">
+                            <img src="imagenes/tapitas.jpg" alt="Tapitas Calpulalpan" class="clickable-image" style="width: 100%; height: auto; border-radius: 8px;">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Publicidad 2 -->
+                    <div class="publicidad" style="flex: 0 0 100%; margin-bottom: 10px; display: flex; justify-content: center; align-items: center; gap: 40px;">
+                    <div style="text-align: left; max-width: 60%;">
+                        <h1 style="margin: 5px 0 8px; font-size: 20px; color: #2c2c2c;">
+                            Tapitas Calpulalpan <br><br> Contra la leucemia
+                        </h1>
+                    </div>
+                    <a href="publicidad1.html" target="_blank" style="display: flex; justify-content: center; align-items: center;">
+                        <div style="position: relative; width: 180px;">
+                            <img src="imagenes/tapitas.jpg" alt="Tapitas Calpulalpan" class="clickable-image" style="width: 100%; height: auto; border-radius: 8px;">
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Botón para mostrar siguiente publicidad -->
+        <button onclick="mostrarSiguientePublicidad()" style="margin-top: 10px; padding: 10px 20px; background-color: #4a7a8c; color: white; border: none; border-radius: 5px;">
+            Mostrar siguiente
+        </button>
+    </div>
+
+    <script>
+        let currentPublicidad = 0;
+        const publicidades = document.querySelectorAll(".publicidad");
+        const innerContainer = document.getElementById("inner-container");
+
+        function mostrarSiguientePublicidad() {
+            currentPublicidad++;
+            if (currentPublicidad >= publicidades.length) {
+                currentPublicidad = 0;
+            }
+            innerContainer.style.transition = "transform 0.5s ease-in-out";
+            innerContainer.style.transform = `translateX(-${currentPublicidad * 100}%)`;
+        }
+    </script>
+
+    <style>
+        .clickable-image {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .clickable-image:hover {
+            transform: scale(1.1);
+            z-index: 2;
+        }
+
+        @media (max-width: 600px) {
+            .publicidad {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .publicidad > div {
+                max-width: 100% !important;
+            }
+        }
+    </style>
+            <script src="java.js"></script>
+</footer>
 </html>
