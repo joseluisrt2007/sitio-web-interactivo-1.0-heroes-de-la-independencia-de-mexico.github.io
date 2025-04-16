@@ -592,6 +592,139 @@ td {
     transform: scale(1.2); /* Escala el botón un 10% */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Añade una sombra */
 }
+
+
+/* Header con posición relativa para controlar hijos */
+.encabezado {
+    position: relative;
+    background-color: #218838;
+    padding: 10px 40px;
+    text-align: center; /* Centra el texto */
+}
+
+
+/* Menú y engrane flotante en esquina */
+#menu-container {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+}
+
+/* Icono de configuración */
+.config-icon {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
+
+/* Menú desplegable */
+.nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 70px;
+    background-color: black;
+    display: none;
+    z-index: 9999;
+    width: 180px;
+    border-radius: 5px;
+}
+
+.nav li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+}
+
+.nav li a:hover {
+    background-color: #458c86;
+}
+
+/* Mostrar menú al pasar el mouse */
+#menu-container:hover .nav {
+    display: block;
+}
+
+
+.tm{
+    text-decoration: none;
+    font-size: 1em ;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+
+/*trivia en insano*/
+
+/* Contenedor del juego */
+.contenedor-juego {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: lightgray;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  /* Imagen del personaje o pregunta */
+  .imgjuego {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border: 3px solid #218838;
+  }
+  
+  /* Texto de la pregunta */
+  .txtpregunta {
+    font-size: 1.4em;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Contenedor de botones */
+  #opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Botones de respuesta */
+  .boton-opcion {
+    font-size: 1.2em;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #218838;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .boton-opcion:hover {
+    background-color: #1a6f2f;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*PARA CELULARES */
 /*POSDATA YA NO QUIERO*/
 @media (max-width: 600px) {
@@ -1234,5 +1367,67 @@ td {
     transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
     margin-bottom: 20px;
 }
+
+
+/* Header con posición relativa para controlar hijos */
+.encabezado {
+    position: relative;
+    background-color: #218838;
+    padding: 10px 40px;
+    text-align: center; /* Centra el texto */
 }
 
+
+/* Menú y engrane flotante en esquina */
+#menu-container {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+}
+
+/* Icono de configuración */
+.config-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+/* Menú desplegable */
+.nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: black;
+    display: none;
+    z-index: 9999;
+    width: 180px;
+    border-radius: 5px;
+}
+
+.nav li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+}
+
+.nav li a:hover {
+    background-color: #458c86;
+}
+
+/* Mostrar menú al pasar el mouse */
+#menu-container:hover .nav {
+    display: block;
+}
+
+
+.tm{
+    text-decoration: none;
+    font-size: 1em ;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+}
