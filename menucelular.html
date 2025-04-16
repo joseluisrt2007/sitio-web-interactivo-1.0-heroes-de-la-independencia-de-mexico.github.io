@@ -7,16 +7,20 @@
     <link rel="stylesheet" href="independenciacelular.css">
 </head>
 <body>
-    <header>
-        <h1 class="titulo">La Independencia de México</h1>
+    <header >
+        <h1 class="titulo">La Independencia de <br>México</h1>
+    
+        <div id="menu-container">
+            <img src="imagenes/con_transparente.png" alt="Configuración" class="config-icon">
+            <ul class="nav">
+                <li><a href="index2.html" class="tm">Cambiar a Laptop</a></li>
+            </ul>
+        </div>
     </header>
-   
+   <br>
     <section>
         <h1 class="subti">Héroes de la Independencia<h1>
     </section>
-
-    <br>
-    <br>
     <br>
 
     <table class="centrar-tabla">
@@ -41,6 +45,111 @@
     <center>
         <a href="menujuegoc.html" class="btn-jugar">Menú<br>Juegos</a>
     </center>
+
+
+    <footer style="background-color: #a3d5ff; color: #333; text-align: center; padding: 15px 10px; font-family: 'Comic Sans MS', cursive, sans-serif;">
+        <table>
+            <tr>
+                <td  style="padding-right: 10px;">
+
+                </td>
+                <!-- Celda de texto -->
+                <td style="padding-right: 20px;"> <!-- Aquí se agrega separación -->
+                    <h1 style="margin: 5px 0 8px; font-size: 22px; color: #2c2c2c;">¡Ayuda a la causa social!</h1>
+        
+                    <div style="padding: 10px; background-color: #a3d5ff;">
+                        <div id="publicidad-container" style="width: 100%; overflow: hidden; position: relative;">
+                            <div id="inner-container" style="display: flex; transition: transform 0.5s ease-in-out;">
+                                <div class="publicidad" style="flex: 0 0 100%; margin-bottom: 10px; display: flex; justify-content: center; align-items: center;">
+                                    <div style="text-align: left; max-width: 100%;">
+                                        <h1 style="margin: 5px 0 8px; font-size: 18px; color: #2c2c2c;">
+                                            Tapitas Calpulalpan <br><br> Contra la leucemia
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+        
+                <!-- Celda de imagen -->
+                <td style="vertical-align: middle;">
+                    <a href="publicidad1.html" target="_blank" style="display: flex; justify-content: right; align-items: center;">
+                        <div style="width: 160px;">
+                            <img src="imagenes/tapitas.jpg" alt="Tapitas Calpulalpan" class="clickable-image" style="width: 100%; height: auto; border-radius: 8px;">
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        
+            </div>
+            </td>
+        </tr>
+       </table>
+        
+
+    
+                    <!-- Publicidad 2 -
+                        <div class="publicidad" style="flex: 0 0 100%; margin-bottom: 10px; display: flex; justify-content: center; align-items: center; gap: 40px;">
+                        <div style="text-align: left; max-width: 60%;">
+                            <h1 style="margin: 5px 0 8px; font-size: 20px; color: #2c2c2c;">
+                                Tapitas Calpulalpan <br><br> Contra la leucemia
+                            </h1>
+                        </div>
+                        <a href="publicidad1.html" target="_blank" style="display: flex; justify-content: center; align-items: center;">
+                            <div style="position: relative; width: 180px;">
+                                <img src="imagenes/tapitas.jpg" alt="Tapitas Calpulalpan" class="clickable-image" style="width: 100%; height: auto; border-radius: 8px;">
+                            </div>
+                        </a>
+                    </div>
+    
+                </div>
+            </div> -->
+    
+            <!-- Botón para mostrar siguiente publicidad --
+            <button onclick="mostrarSiguientePublicidad()" style="margin-top: 10px; padding: 10px 20px; background-color: #4a7a8c; color: white; border: none; border-radius: 5px;">
+                Mostrar siguiente
+            </button>-->
+        </div>
+    
+        <script>
+            let currentPublicidad = 0;
+            const publicidades = document.querySelectorAll(".publicidad");
+            const innerContainer = document.getElementById("inner-container");
+    
+            function mostrarSiguientePublicidad() {
+                currentPublicidad++;
+                if (currentPublicidad >= publicidades.length) {
+                    currentPublicidad = 0;
+                }
+                innerContainer.style.transition = "transform 0.5s ease-in-out";
+                innerContainer.style.transform = `translateX(-${currentPublicidad * 100}%)`;
+            }
+        </script>
+    
+        <style>
+            .clickable-image {
+                transition: transform 0.5s ease-in-out;
+            }
+    
+            .clickable-image:hover {
+                transform: scale(1.1);
+                z-index: 2;
+            }
+    
+            @media (max-width: 600px) {
+                .publicidad {
+                    flex-direction: column;
+                    text-align: center;
+                }
+    
+                .publicidad > div {
+                    max-width: 100% !important;
+                }
+            }
+        </style>
+                <script src="java.js"></script>
+    </footer>
 </body>
-</html>
 </html>
