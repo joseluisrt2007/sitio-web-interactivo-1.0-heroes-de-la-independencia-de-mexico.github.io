@@ -714,6 +714,130 @@ td {
 
 
 
+/* Contenedor principal de toda la línea del tiempo */
+.contenedor-timeline {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    gap: 30px;
+  }
+  
+  /* Columna de fechas con línea */
+  .menu-fechas {
+    width: 150px;
+    padding-right: 20px;
+    border-right: 4px solid #218838;
+    margin-right: 20px;
+  }
+
+  .menu-fechas ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+  }
+  
+  .menu-fechas li {
+    margin: 40px 0;
+  }
+  
+  .menu-fechas a {
+    text-decoration: none;
+    color: #218838;
+    font-weight: bold;
+    transition: color 0.3s;
+    font-size: 1.8em;
+  }
+  
+  .menu-fechas a:hover {
+    color: darkgreen;
+  }
+  
+  /* Línea de tiempo de eventos */
+  .linea-tiempo {
+    flex: 1;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    scroll-behavior: smooth;
+  }
+  
+  /* Cada evento */
+  .evento {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 20px;
+    gap: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .evento:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .evento img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    border-right: 4px solid #218838;
+  }
+  
+  .contenido {
+    padding-left: 10px;
+    flex: 1;
+  }
+  
+  .contenido h2 {
+    margin: 0;
+    color: #218838;
+    font-size: 1.8em;
+    font-family: 'Georgia', serif;
+  }
+  
+  .contenido p {
+    margin-top: 1px;
+    font-size: 1.3em;
+    color: #333;
+    font-family: Arial, sans-serif;
+  }
+  
+  .subtiline{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #ffffff; /* Color blanco */;
+    text-align: center;
+    color: black;
+    font-size: 1.8em;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1048,6 +1172,79 @@ td {
         margin-bottom: 20px;
     }
     
+    .contenedor-timeline {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 10px;
+      }
+    
+      .menu-fechas {
+        width: 100%;
+        border-right: none;
+        border-bottom: 4px solid #218838;
+        margin-right: 0;
+        margin-bottom: 20px;
+        padding-right: 0;
+        padding-bottom: 10px;
+      }
+    
+      .menu-fechas ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+      }
+    
+      .menu-fechas li {
+        margin: 0;
+      }
+    
+      .menu-fechas a {
+        font-size: 1em;
+        padding: 5px 10px;
+      }
+    
+      .linea-tiempo {
+        max-width: 100%;
+        padding-left: 0;
+      }
+    
+      .evento {
+        flex-direction: row; /* MANTENER IMAGEN Y TEXTO LADO A LADO */
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        text-align: left;
+        padding: 15px;
+        flex-wrap: wrap; /* Permite que baje si no cabe todo */
+      }
+    
+      .evento img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-right: 4px solid #218838;
+        border-bottom: none;
+      }
+    
+      .contenido {
+        padding: 0;
+        flex: 1;
+        min-width: 150px;
+      }
+    
+      .contenido h2 {
+        font-size: 1.2em;
+      }
+    
+      .contenido p {
+        font-size: 1em;
+      }
+    
+      .subtiline {
+        font-size: 1.5em;
+      }
 }
 /* Estilos generales para tabletas (ancho máximo de 1024px) */
 @media (min-width: 601px) and (max-width: 1024px) {
