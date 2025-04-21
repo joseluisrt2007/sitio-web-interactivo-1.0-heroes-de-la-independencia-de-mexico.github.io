@@ -1,3 +1,4 @@
+// Datos del juego
 const piezas = [
     { id: "pieza1", img: "imagenes/p1.jpg" },
     { id: "pieza2", img: "imagenes/p2.jpg" },
@@ -23,272 +24,168 @@ const datosCuriosos = [
     "La lucha por la independencia inspiró a otros países latinoamericanos."
 ];
 
-// Variables de control
+// Estado del juego
+let piezaActiva = null;
+let offsetTouch = { x: 0, y: 0 };
 const datosMostrados = new Set();
-let datoCuriosoTimeout = null;
-let fallaTimeout = null;
-let exitoTimeout = null;
-let datoActual = null;
-let piezaSeleccionada = null;
-let offsetX, offsetY;
 
-// Inicialización del juego
-window.onload = function() {
-    inicializarJuego();
-    
-    // Hacer funciones accesibles globalmente
-    window.cerrarModalFalla = cerrarModalFalla;
-    window.cerrarMensajeModal = cerrarMensajeModal;
-    window.cerrarDatoCurioso = cerrarDatoCurioso;
-};
+// Inicialización
+function iniciarJuego() {
+    const contenedorPiezas = document.getElementById("piezas-superiores");
+    const areaRompecabezas = document.getElementById("rompecabezas");
 
-function inicializarJuego() {
-    const piezasContenedor = document.getElementById("piezas-superiores");
-    const rompecabezas = document.getElementById("rompecabezas");
-
-    // Limpiar contenedores
-    piezasContenedor.innerHTML = "";
-    rompecabezas.innerHTML = "";
-
-    // Mezclar piezas
+    // Limpiar y mezclar piezas
+    contenedorPiezas.innerHTML = "";
+    areaRompecabezas.innerHTML = "";
     const piezasMezcladas = [...piezas].sort(() => Math.random() - 0.5);
 
-    // Generar piezas táctiles
+    // Crear piezas móviles
     piezasMezcladas.forEach(pieza => {
-        const img = document.createElement("img");
-        img.src = pieza.img;
-        img.id = pieza.id;
-        img.classList.add("pieza-img");
-        img.style.position = "absolute";
-        img.style.touchAction = "none"; // Importante para eventos táctiles
+        const elementoPieza = document.createElement("img");
+        elementoPieza.src = pieza.img;
+        elementoPieza.id = pieza.id;
+        elementoPieza.className = "pieza-img";
+        elementoPieza.draggable = false; // Importante para touch
         
         // Eventos táctiles
-        img.addEventListener("touchstart", manejarTouchStart);
-        img.addEventListener("touchmove", manejarTouchMove);
-        img.addEventListener("touchend", manejarTouchEnd);
+        elementoPieza.addEventListener("touchstart", manejarInicioTouch, { passive: false });
+        elementoPieza.addEventListener("touchmove", manejarMovimientoTouch, { passive: false });
+        elementoPieza.addEventListener("touchend", manejarFinTouch);
         
-        // Eventos de ratón (para compatibilidad)
-        img.addEventListener("mousedown", manejarMouseDown);
-        
-        piezasContenedor.appendChild(img);
+        contenedorPiezas.appendChild(elementoPieza);
     });
 
-    // Generar casillas del rompecabezas
+    // Crear área del rompecabezas
     for (let i = 0; i < 9; i++) {
         const casilla = document.createElement("div");
         casilla.className = "casilla";
-        casilla.dataset.correcta = `pieza${i + 1}`;
-        casilla.addEventListener("touchend", manejarCasillaTouch);
-        casilla.addEventListener("mouseup", manejarCasillaClick);
-        rompecabezas.appendChild(casilla);
-    }
-
-    // Configurar eventos para cerrar modales
-    configurarCierreModales();
-}
-
-// Manejadores de eventos táctiles
-function manejarTouchStart(e) {
-    e.preventDefault();
-    const touch = e.touches[0];
-    const img = e.currentTarget;
-    
-    piezaSeleccionada = img;
-    const rect = img.getBoundingClientRect();
-    
-    offsetX = touch.clientX - rect.left;
-    offsetY = touch.clientY - rect.top;
-    
-    img.style.zIndex = "100";
-    img.style.transition = "none";
-}
-
-function manejarTouchMove(e) {
-    e.preventDefault();
-    if (!piezaSeleccionada) return;
-    
-    const touch = e.touches[0];
-    piezaSeleccionada.style.left = (touch.clientX - offsetX) + "px";
-    piezaSeleccionada.style.top = (touch.clientY - offsetY) + "px";
-}
-
-function manejarTouchEnd(e) {
-    if (!piezaSeleccionada) return;
-    
-    piezaSeleccionada.style.zIndex = "";
-    piezaSeleccionada.style.transition = "all 0.3s";
-    piezaSeleccionada = null;
-}
-
-// Manejadores de eventos de ratón (para compatibilidad)
-function manejarMouseDown(e) {
-    const img = e.currentTarget;
-    piezaSeleccionada = img;
-    const rect = img.getBoundingClientRect();
-    
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-    
-    img.style.zIndex = "100";
-    img.style.transition = "none";
-    
-    document.addEventListener("mousemove", moverPiezaMouse);
-    document.addEventListener("mouseup", soltarPiezaMouse);
-}
-
-function moverPiezaMouse(e) {
-    if (!piezaSeleccionada) return;
-    
-    piezaSeleccionada.style.left = (e.clientX - offsetX) + "px";
-    piezaSeleccionada.style.top = (e.clientY - offsetY) + "px";
-}
-
-function soltarPiezaMouse() {
-    if (!piezaSeleccionada) return;
-    
-    piezaSeleccionada.style.zIndex = "";
-    piezaSeleccionada.style.transition = "all 0.3s";
-    document.removeEventListener("mousemove", moverPiezaMouse);
-    document.removeEventListener("mouseup", soltarPiezaMouse);
-    piezaSeleccionada = null;
-}
-
-// Manejadores de colocación en casillas
-function manejarCasillaTouch(e) {
-    e.preventDefault();
-    if (!piezaSeleccionada) return;
-    
-    const casilla = e.currentTarget;
-    verificarColocacion(piezaSeleccionada, casilla);
-}
-
-function manejarCasillaClick(e) {
-    if (!piezaSeleccionada) return;
-    
-    const casilla = e.currentTarget;
-    verificarColocacion(piezaSeleccionada, casilla);
-}
-
-function verificarColocacion(pieza, casilla) {
-    if (!casilla.hasChildNodes()) {
-        if (pieza.id === casilla.dataset.correcta) {
-            colocarPiezaCorrecta(pieza, casilla);
-        } else {
-            mostrarModalFalla();
-        }
+        casilla.dataset.piezaCorrecta = `pieza${i + 1}`;
+        casilla.addEventListener("touchend", manejarSoltarPieza);
+        areaRompecabezas.appendChild(casilla);
     }
 }
 
-function configurarCierreModales() {
-    // Cerrar al hacer clic fuera del contenido
-    document.querySelectorAll('.modalj').forEach(modal => {
-        modal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                if (this.id === 'modalFalla') {
-                    cerrarModalFalla();
-                } else if (this.id === 'mensajeModal') {
-                    cerrarMensajeModal();
-                }
-            }
-        });
-    });
-
-    // Cerrar dato curioso al hacer clic
-    const datoCurioso = document.getElementById("dato-curioso");
-    datoCurioso.addEventListener('click', cerrarDatoCurioso);
+// Manejo de eventos táctiles
+function manejarInicioTouch(evento) {
+    evento.preventDefault();
+    const touch = evento.touches[0];
+    piezaActiva = evento.target;
+    
+    const rect = piezaActiva.getBoundingClientRect();
+    offsetTouch.x = touch.clientX - rect.left;
+    offsetTouch.y = touch.clientY - rect.top;
+    
+    piezaActiva.style.position = "absolute";
+    piezaActiva.style.zIndex = "1000";
+    piezaActiva.style.transition = "none";
 }
 
-// Lógica del juego
+function manejarMovimientoTouch(evento) {
+    if (!piezaActiva) return;
+    evento.preventDefault();
+    
+    const touch = evento.touches[0];
+    piezaActiva.style.left = `${touch.clientX - offsetTouch.x}px`;
+    piezaActiva.style.top = `${touch.clientY - offsetTouch.y}px`;
+}
+
+function manejarFinTouch() {
+    if (!piezaActiva) return;
+    
+    piezaActiva.style.zIndex = "";
+    piezaActiva.style.transition = "all 0.3s";
+    piezaActiva = null;
+}
+
+function manejarSoltarPieza(evento) {
+    if (!piezaActiva) return;
+    evento.preventDefault();
+    
+    const casilla = evento.currentTarget;
+    if (casilla.hasChildNodes()) return;
+    
+    if (piezaActiva.id === casilla.dataset.piezaCorrecta) {
+        colocarPiezaCorrecta(piezaActiva, casilla);
+    } else {
+        mostrarError();
+    }
+}
+
 function colocarPiezaCorrecta(pieza, casilla) {
-    pieza.classList.add("pieza-colocada");
-    casilla.appendChild(pieza);
+    // Clonar la pieza para el rompecabezas
+    const piezaColocada = pieza.cloneNode();
+    piezaColocada.className = "pieza-colocada";
+    piezaColocada.style.position = "";
+    piezaColocada.style.left = "";
+    piezaColocada.style.top = "";
     
-    // Mostrar dato curioso con retraso para mejor experiencia
-    setTimeout(mostrarDatoCurioso, 100);
+    // Limpiar eventos del clon
+    piezaColocada.ontouchstart = null;
+    piezaColocada.ontouchmove = null;
+    piezaColocada.ontouchend = null;
+    
+    casilla.appendChild(piezaColocada);
+    pieza.remove();
+    
+    mostrarDatoCurioso();
     verificarCompletado();
 }
 
+// Sistema de mensajes
 function mostrarDatoCurioso() {
-    const divDato = document.getElementById("dato-curioso");
+    const contenedorDato = document.getElementById("dato-curioso");
     
-    // Cancelar timeout anterior si existe
-    if (datoCuriosoTimeout) {
-        clearTimeout(datoCuriosoTimeout);
-    }
-
-    // Obtener dato curioso no mostrado
-    let disponible = datosCuriosos.filter(d => !datosMostrados.has(d));
-    if (disponible.length === 0) {
+    // Obtener dato no mostrado
+    let disponibles = datosCuriosos.filter(d => !datosMostrados.has(d));
+    if (disponibles.length === 0) {
         datosMostrados.clear();
-        disponible = [...datosCuriosos];
+        disponibles = [...datosCuriosos];
     }
-
-    datoActual = disponible[Math.floor(Math.random() * disponible.length)];
-    datosMostrados.add(datoActual);
-
-    // Mostrar dato
-    divDato.textContent = datoActual;
-    divDato.classList.add("visible");
-
-    // Configurar timeout (15 segundos)
-    datoCuriosoTimeout = setTimeout(cerrarDatoCurioso, 5000);
+    
+    const dato = disponibles[Math.floor(Math.random() * disponibles.length)];
+    datosMostrados.add(dato);
+    
+    contenedorDato.textContent = dato;
+    contenedorDato.classList.add("visible");
+    
+    // Ocultar después de 7 segundos
+    setTimeout(() => {
+        contenedorDato.classList.remove("visible");
+    }, 7000);
 }
 
-function cerrarDatoCurioso() {
-    const divDato = document.getElementById("dato-curioso");
-    divDato.classList.remove("visible");
-    if (datoCuriosoTimeout) {
-        clearTimeout(datoCuriosoTimeout);
-        datoCuriosoTimeout = null;
-    }
+function mostrarError() {
+    const modalError = document.getElementById("modalFalla");
+    modalError.style.display = "flex";
+    
+    setTimeout(() => {
+        modalError.style.display = "none";
+    }, 3000);
 }
 
 function verificarCompletado() {
     const casillas = document.querySelectorAll(".casilla");
-    const completado = [...casillas].every(casilla => casilla.hasChildNodes());
+    const completado = [...casillas].every(c => c.hasChildNodes());
     
     if (completado) {
-        setTimeout(mostrarMensajeExito, 1000);
+        setTimeout(() => {
+            document.getElementById("mensajeModal").style.display = "flex";
+        }, 1000);
     }
 }
 
-// Funciones para modales
-function mostrarModalFalla() {
-    const modal = document.getElementById("modalFalla");
-    modal.style.display = "flex";
-    
-    if (fallaTimeout) {
-        clearTimeout(fallaTimeout);
-    }
-    
-    fallaTimeout = setTimeout(cerrarModalFalla, 3000);
-}
+// Iniciar juego cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", iniciarJuego);
 
-function cerrarModalFalla() {
-    const modal = document.getElementById("modalFalla");
-    modal.style.display = "none";
-    if (fallaTimeout) {
-        clearTimeout(fallaTimeout);
-        fallaTimeout = null;
-    }
-}
+// Funciones globales para cerrar modales
+window.cerrarModalFalla = function() {
+    document.getElementById("modalFalla").style.display = "none";
+};
 
-function mostrarMensajeExito() {
-    const modal = document.getElementById("mensajeModal");
-    modal.style.display = "flex";
-    
-    if (exitoTimeout) {
-        clearTimeout(exitoTimeout);
-    }
-    
-    exitoTimeout = setTimeout(cerrarMensajeModal, 5000);
-}
+window.cerrarMensajeModal = function() {
+    document.getElementById("mensajeModal").style.display = "none";
+};
 
-function cerrarMensajeModal() {
-    const modal = document.getElementById("mensajeModal");
-    modal.style.display = "none";
-    if (exitoTimeout) {
-        clearTimeout(exitoTimeout);
-        exitoTimeout = null;
-    }
-} 
+window.cerrarDatoCurioso = function() {
+    document.getElementById("dato-curioso").classList.remove("visible");
+};
