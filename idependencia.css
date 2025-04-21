@@ -820,13 +820,99 @@ td {
 
 
 
+  /*rompecabezas*/
+
+
+.contenedor-rompecabezas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 10px;
+}
+
+.piezas-superiores {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.piezas-superiores img {
+  width: 100px;
+  height: 100px;
+  cursor: grab;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.rompecabezas {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 8px;
+  justify-content: center;
+}
+
+.casilla {
+  width: 100px;
+  height: 100px;
+  background-color: #e0e0e0;
+  border: 2px dashed #218838;
+  border-radius: 10px;
+}
+
+.dato-curioso {
+  margin-top: 30px;
+  padding: 15px 25px;
+  background-color: #218838;
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 1.2em;
+  text-align: center;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.dato-curioso.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
 
+.pieza-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
 
 
+  #dato-curioso {
+    transition: opacity 0.5s ease-in-out;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #218838;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    max-width: 80%;
+    text-align: center;
+}
 
+#dato-curioso.visible {
+    opacity: 1;
+}
 
+/*#dato-curioso:not(.visible) {
+    opacity: 0;
+    pointer-events: none;
+}*/
 
 
 
