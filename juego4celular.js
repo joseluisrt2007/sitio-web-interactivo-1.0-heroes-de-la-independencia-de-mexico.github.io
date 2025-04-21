@@ -29,6 +29,8 @@ let datoCuriosoTimeout = null;
 let fallaTimeout = null;
 let exitoTimeout = null;
 let datoActual = null;
+let piezaSeleccionada = null;
+let offsetX, offsetY;
 
 // Inicialización del juego
 window.onload = function() {
@@ -51,14 +53,23 @@ function inicializarJuego() {
     // Mezclar piezas
     const piezasMezcladas = [...piezas].sort(() => Math.random() - 0.5);
 
-    // Generar piezas arrastrables
+    // Generar piezas táctiles
     piezasMezcladas.forEach(pieza => {
         const img = document.createElement("img");
         img.src = pieza.img;
         img.id = pieza.id;
-        img.draggable = true;
         img.classList.add("pieza-img");
-        img.addEventListener("dragstart", manejarDragStart);
+        img.style.position = "absolute";
+        img.style.touchAction = "none"; // Importante para eventos táctiles
+        
+        // Eventos táctiles
+        img.addEventListener("touchstart", manejarTouchStart);
+        img.addEventListener("touchmove", manejarTouchMove);
+        img.addEventListener("touchend", manejarTouchEnd);
+        
+        // Eventos de ratón (para compatibilidad)
+        img.addEventListener("mousedown", manejarMouseDown);
+        
         piezasContenedor.appendChild(img);
     });
 
@@ -67,8 +78,8 @@ function inicializarJuego() {
         const casilla = document.createElement("div");
         casilla.className = "casilla";
         casilla.dataset.correcta = `pieza${i + 1}`;
-        casilla.addEventListener("dragover", manejarDragOver);
-        casilla.addEventListener("drop", manejarDrop);
+        casilla.addEventListener("touchend", manejarCasillaTouch);
+        casilla.addEventListener("mouseup", manejarCasillaClick);
         rompecabezas.appendChild(casilla);
     }
 
@@ -76,23 +87,91 @@ function inicializarJuego() {
     configurarCierreModales();
 }
 
-// Manejadores de eventos
-function manejarDragStart(e) {
-    e.dataTransfer.setData("text/plain", this.id);
+// Manejadores de eventos táctiles
+function manejarTouchStart(e) {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const img = e.currentTarget;
+    
+    piezaSeleccionada = img;
+    const rect = img.getBoundingClientRect();
+    
+    offsetX = touch.clientX - rect.left;
+    offsetY = touch.clientY - rect.top;
+    
+    img.style.zIndex = "100";
+    img.style.transition = "none";
 }
 
-function manejarDragOver(e) {
+function manejarTouchMove(e) {
     e.preventDefault();
+    if (!piezaSeleccionada) return;
+    
+    const touch = e.touches[0];
+    piezaSeleccionada.style.left = (touch.clientX - offsetX) + "px";
+    piezaSeleccionada.style.top = (touch.clientY - offsetY) + "px";
 }
 
-function manejarDrop(e) {
+function manejarTouchEnd(e) {
+    if (!piezaSeleccionada) return;
+    
+    piezaSeleccionada.style.zIndex = "";
+    piezaSeleccionada.style.transition = "all 0.3s";
+    piezaSeleccionada = null;
+}
+
+// Manejadores de eventos de ratón (para compatibilidad)
+function manejarMouseDown(e) {
+    const img = e.currentTarget;
+    piezaSeleccionada = img;
+    const rect = img.getBoundingClientRect();
+    
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+    
+    img.style.zIndex = "100";
+    img.style.transition = "none";
+    
+    document.addEventListener("mousemove", moverPiezaMouse);
+    document.addEventListener("mouseup", soltarPiezaMouse);
+}
+
+function moverPiezaMouse(e) {
+    if (!piezaSeleccionada) return;
+    
+    piezaSeleccionada.style.left = (e.clientX - offsetX) + "px";
+    piezaSeleccionada.style.top = (e.clientY - offsetY) + "px";
+}
+
+function soltarPiezaMouse() {
+    if (!piezaSeleccionada) return;
+    
+    piezaSeleccionada.style.zIndex = "";
+    piezaSeleccionada.style.transition = "all 0.3s";
+    document.removeEventListener("mousemove", moverPiezaMouse);
+    document.removeEventListener("mouseup", soltarPiezaMouse);
+    piezaSeleccionada = null;
+}
+
+// Manejadores de colocación en casillas
+function manejarCasillaTouch(e) {
     e.preventDefault();
-    const idPieza = e.dataTransfer.getData("text/plain");
-    const pieza = document.getElementById(idPieza);
+    if (!piezaSeleccionada) return;
+    
     const casilla = e.currentTarget;
+    verificarColocacion(piezaSeleccionada, casilla);
+}
 
+function manejarCasillaClick(e) {
+    if (!piezaSeleccionada) return;
+    
+    const casilla = e.currentTarget;
+    verificarColocacion(piezaSeleccionada, casilla);
+}
+
+function verificarColocacion(pieza, casilla) {
     if (!casilla.hasChildNodes()) {
-        if (idPieza === casilla.dataset.correcta) {
+        if (pieza.id === casilla.dataset.correcta) {
             colocarPiezaCorrecta(pieza, casilla);
         } else {
             mostrarModalFalla();
@@ -212,4 +291,4 @@ function cerrarMensajeModal() {
         clearTimeout(exitoTimeout);
         exitoTimeout = null;
     }
-}
+} 
