@@ -1,4 +1,4 @@
-// Datos del juego
+// Array de piezas del rompecabezas con sus imágenes
 const piezas = [
     { id: "pieza1", img: "imagenes/p1.jpg" },
     { id: "pieza2", img: "imagenes/p2.jpg" },
@@ -11,6 +11,7 @@ const piezas = [
     { id: "pieza9", img: "imagenes/p9.jpg" }
 ];
 
+// Datos curiosos para mostrar
 const datosCuriosos = [
     "Miguel Hidalgo usó estandartes con la Virgen de Guadalupe.",
     "El Grito de Dolores se dio el 16 de septiembre de 1810.",
@@ -24,168 +25,213 @@ const datosCuriosos = [
     "La lucha por la independencia inspiró a otros países latinoamericanos."
 ];
 
-// Estado del juego
-let piezaActiva = null;
-let offsetTouch = { x: 0, y: 0 };
+// Variables de control
 const datosMostrados = new Set();
+let piezaSeleccionada = null;
+let datoCuriosoTimeout = null;
+let fallaTimeout = null;
+let exitoTimeout = null;
 
-// Inicialización
-function iniciarJuego() {
-    const contenedorPiezas = document.getElementById("piezas-superiores");
-    const areaRompecabezas = document.getElementById("rompecabezas");
+// Inicialización del juego cuando la página carga
+window.onload = function() {
+    inicializarJuego();
+    
+    // Hacer funciones accesibles globalmente
+    window.cerrarModalFalla = cerrarModalFalla;
+    window.cerrarMensajeModal = cerrarMensajeModal;
+    window.cerrarDatoCurioso = cerrarDatoCurioso;
+};
 
-    // Limpiar y mezclar piezas
-    contenedorPiezas.innerHTML = "";
-    areaRompecabezas.innerHTML = "";
+// Función principal de inicialización
+function inicializarJuego() {
+    const piezasContenedor = document.getElementById("piezas-superiores");
+    const rompecabezas = document.getElementById("contenedor-rompecabezas");
+
+    // Limpiar contenedores
+    piezasContenedor.innerHTML = "";
+    rompecabezas.innerHTML = "";
+
+    // Mezclar piezas aleatoriamente
     const piezasMezcladas = [...piezas].sort(() => Math.random() - 0.5);
 
-    // Crear piezas móviles
+    // Crear y agregar las piezas al contenedor superior
     piezasMezcladas.forEach(pieza => {
-        const elementoPieza = document.createElement("img");
-        elementoPieza.src = pieza.img;
-        elementoPieza.id = pieza.id;
-        elementoPieza.className = "pieza-img";
-        elementoPieza.draggable = false; // Importante para touch
+        const img = document.createElement("img");
+        img.src = pieza.img;
+        img.alt = "Pieza del rompecabezas";
+        img.id = pieza.id;
+        img.classList.add("pieza-img");
         
-        // Eventos táctiles
-        elementoPieza.addEventListener("touchstart", manejarInicioTouch, { passive: false });
-        elementoPieza.addEventListener("touchmove", manejarMovimientoTouch, { passive: false });
-        elementoPieza.addEventListener("touchend", manejarFinTouch);
+       
         
-        contenedorPiezas.appendChild(elementoPieza);
+        // Event listeners para selección por toque
+        img.addEventListener("touchstart", manejarSeleccionPieza, { passive: false });
+        img.addEventListener("click", manejarSeleccionPieza);
+        
+        piezasContenedor.appendChild(img);
     });
 
-    // Crear área del rompecabezas
+    // Crear las casillas del rompecabezas
     for (let i = 0; i < 9; i++) {
         const casilla = document.createElement("div");
         casilla.className = "casilla";
-        casilla.dataset.piezaCorrecta = `pieza${i + 1}`;
-        casilla.addEventListener("touchend", manejarSoltarPieza);
-        areaRompecabezas.appendChild(casilla);
+        casilla.dataset.correcta = `pieza${i + 1}`;
+        
+        // Event listeners para colocar piezas
+        casilla.addEventListener("touchend", manejarColocacionPieza);
+        casilla.addEventListener("click", manejarColocacionPieza);
+        
+        rompecabezas.appendChild(casilla);
     }
+
+    configurarCierreModales();
 }
 
-// Manejo de eventos táctiles
-function manejarInicioTouch(evento) {
-    evento.preventDefault();
-    const touch = evento.touches[0];
-    piezaActiva = evento.target;
-    
-    const rect = piezaActiva.getBoundingClientRect();
-    offsetTouch.x = touch.clientX - rect.left;
-    offsetTouch.y = touch.clientY - rect.top;
-    
-    piezaActiva.style.position = "absolute";
-    piezaActiva.style.zIndex = "1000";
-    piezaActiva.style.transition = "none";
+// Configurar cierre de modales
+function configurarCierreModales() {
+    document.querySelectorAll('.cerrarj').forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.closest('.modalj').style.display = 'none';
+        });
+    });
 }
 
-function manejarMovimientoTouch(evento) {
-    if (!piezaActiva) return;
-    evento.preventDefault();
+// Manejar selección de pieza
+function manejarSeleccionPieza(e) {
+    e.preventDefault();
+    const pieza = e.target;
     
-    const touch = evento.touches[0];
-    piezaActiva.style.left = `${touch.clientX - offsetTouch.x}px`;
-    piezaActiva.style.top = `${touch.clientY - offsetTouch.y}px`;
-}
-
-function manejarFinTouch() {
-    if (!piezaActiva) return;
-    
-    piezaActiva.style.zIndex = "";
-    piezaActiva.style.transition = "all 0.3s";
-    piezaActiva = null;
-}
-
-function manejarSoltarPieza(evento) {
-    if (!piezaActiva) return;
-    evento.preventDefault();
-    
-    const casilla = evento.currentTarget;
-    if (casilla.hasChildNodes()) return;
-    
-    if (piezaActiva.id === casilla.dataset.piezaCorrecta) {
-        colocarPiezaCorrecta(piezaActiva, casilla);
-    } else {
-        mostrarError();
+    // Deseleccionar si ya está seleccionada
+    if (piezaSeleccionada === pieza) {
+        pieza.classList.remove("pieza-seleccionada");
+        piezaSeleccionada = null;
+        return;
     }
+    
+    // Deseleccionar cualquier pieza previa
+    if (piezaSeleccionada) {
+        piezaSeleccionada.classList.remove("pieza-seleccionada");
+    }
+    
+    // Seleccionar nueva pieza
+    piezaSeleccionada = pieza;
+    pieza.classList.add("pieza-seleccionada");
 }
 
+// Manejar colocación de pieza
+function manejarColocacionPieza(e) {
+    if (!piezaSeleccionada) return;
+    
+    const casilla = e.currentTarget;
+    
+    if (!casilla.hasChildNodes()) {
+        if (piezaSeleccionada.id === casilla.dataset.correcta) {
+            colocarPiezaCorrecta(piezaSeleccionada, casilla);
+        } else {
+            mostrarModalFalla();
+        }
+    }
+    
+    // Deseleccionar la pieza después del intento
+    piezaSeleccionada.classList.remove("pieza-seleccionada");
+    piezaSeleccionada = null;
+}
+
+// Colocar pieza correctamente
 function colocarPiezaCorrecta(pieza, casilla) {
-    // Clonar la pieza para el rompecabezas
-    const piezaColocada = pieza.cloneNode();
-    piezaColocada.className = "pieza-colocada";
-    piezaColocada.style.position = "";
-    piezaColocada.style.left = "";
-    piezaColocada.style.top = "";
+    const clon = pieza.cloneNode(true);
+    clon.classList.remove("pieza-seleccionada");
+    clon.classList.add("pieza-colocada");
     
-    // Limpiar eventos del clon
-    piezaColocada.ontouchstart = null;
-    piezaColocada.ontouchmove = null;
-    piezaColocada.ontouchend = null;
+    // Eliminar eventos de selección
+    clon.removeEventListener("touchstart", manejarSeleccionPieza);
+    clon.removeEventListener("click", manejarSeleccionPieza);
     
-    casilla.appendChild(piezaColocada);
+    casilla.appendChild(clon);
+    
+    // Eliminar la pieza original del contenedor superior
     pieza.remove();
     
+    // Mostrar dato curioso
     mostrarDatoCurioso();
+    
+    // Verificar si el rompecabezas está completo
     verificarCompletado();
 }
 
-// Sistema de mensajes
+// Mostrar dato curioso aleatorio
 function mostrarDatoCurioso() {
-    const contenedorDato = document.getElementById("dato-curioso");
+    clearTimeout(datoCuriosoTimeout);
     
-    // Obtener dato no mostrado
-    let disponibles = datosCuriosos.filter(d => !datosMostrados.has(d));
-    if (disponibles.length === 0) {
+    // Si ya mostramos todos los datos, reiniciamos
+    if (datosMostrados.size >= datosCuriosos.length) {
         datosMostrados.clear();
-        disponibles = [...datosCuriosos];
     }
     
-    const dato = disponibles[Math.floor(Math.random() * disponibles.length)];
+    // Encontrar un dato no mostrado
+    let dato;
+    do {
+        const indice = Math.floor(Math.random() * datosCuriosos.length);
+        dato = datosCuriosos[indice];
+    } while (datosMostrados.has(dato) && datosMostrados.size < datosCuriosos.length);
+    
     datosMostrados.add(dato);
     
-    contenedorDato.textContent = dato;
-    contenedorDato.classList.add("visible");
+    const elementoDato = document.getElementById("dato-curioso");
+    elementoDato.textContent = dato;
+    elementoDato.classList.add("visible");
     
-    // Ocultar después de 7 segundos
-    setTimeout(() => {
-        contenedorDato.classList.remove("visible");
-    }, 7000);
-}
-
-function mostrarError() {
-    const modalError = document.getElementById("modalFalla");
-    modalError.style.display = "flex";
-    
-    setTimeout(() => {
-        modalError.style.display = "none";
+    datoCuriosoTimeout = setTimeout(() => {
+        elementoDato.classList.remove("visible");
     }, 3000);
 }
 
+// Cerrar dato curioso manualmente
+function cerrarDatoCurioso() {
+    clearTimeout(datoCuriosoTimeout);
+    document.getElementById("dato-curioso").classList.remove("visible");
+}
+
+// Verificar si el rompecabezas está completo
 function verificarCompletado() {
-    const casillas = document.querySelectorAll(".casilla");
-    const completado = [...casillas].every(c => c.hasChildNodes());
+    const casillas = document.querySelectorAll('.casilla');
+    const completado = Array.from(casillas).every(casilla => casilla.hasChildNodes());
     
     if (completado) {
-        setTimeout(() => {
-            document.getElementById("mensajeModal").style.display = "flex";
-        }, 1000);
+        mostrarModalExito();
     }
 }
 
-// Iniciar juego cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", iniciarJuego);
+// Mostrar modal de error
+function mostrarModalFalla() {
+    clearTimeout(fallaTimeout);
+    const modal = document.getElementById("mensajeFalloModal");
+    modal.style.display = "flex";
+    
+    fallaTimeout = setTimeout(() => {
+        modal.style.display = "none";
+    }, 4000);
+}
 
-// Funciones globales para cerrar modales
-window.cerrarModalFalla = function() {
-    document.getElementById("modalFalla").style.display = "none";
-};
+// Cerrar modal de error
+function cerrarModalFalla() {
+    clearTimeout(fallaTimeout);
+    document.getElementById("mensajeFalloModal").style.display = "none";
+}
 
-window.cerrarMensajeModal = function() {
+// Mostrar modal de éxito
+function mostrarModalExito() {
+    clearTimeout(exitoTimeout);
+    const modal = document.getElementById("mensajeModal");
+    modal.style.display = "flex";
+    
+    exitoTimeout = setTimeout(() => {
+        modal.style.display = "none";
+    }, 4000);
+}
+
+// Cerrar modal de éxito
+function cerrarMensajeModal() {
+    clearTimeout(exitoTimeout);
     document.getElementById("mensajeModal").style.display = "none";
-};
-
-window.cerrarDatoCurioso = function() {
-    document.getElementById("dato-curioso").classList.remove("visible");
-};
+}
