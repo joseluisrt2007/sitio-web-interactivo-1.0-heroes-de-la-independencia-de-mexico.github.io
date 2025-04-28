@@ -321,7 +321,7 @@ td {
 
   .puzzle-piece.revealed {
     background-size: 300px 300px;
-    background-image: url('imagenes/rompecabezas.jpg');
+    background-image: url('imagenes/roo.jpg');
   }
 
   /* Centrar el rompecabezas en la página */
